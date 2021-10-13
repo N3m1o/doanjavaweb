@@ -1,0 +1,25 @@
+package com.laptrinhjavaweb.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.laptrinhjavaweb.entity.NewsEntity;
+
+public interface NewsRepository extends JpaRepository<NewsEntity, Integer>{
+	@Query(value = "select * from news", nativeQuery = true)
+	List<NewsEntity> findAllBy();
+	
+	@Query(value = "select top 10 * from news", nativeQuery = true)
+	List<NewsEntity> findLastNews();
+	
+	@Query(value = "select * from news n where n.cate_id = ?1", nativeQuery = true)
+	List<NewsEntity> findByID(Integer cateId);
+	
+	@Query(value = "select * from news n where n.news_id = ?1", nativeQuery = true)
+	NewsEntity findOneByIdNews(Integer newsId);
+	
+	@Query(value = "select * from news n where n.title like %?1%", nativeQuery = true)
+	List<NewsEntity> findByLikeTitle(String titleNews);
+}

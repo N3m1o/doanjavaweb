@@ -13,13 +13,27 @@ import javax.persistence.Table;
 public class CateEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name = "cate_id", nullable = false)
+	@Column(name = "cate_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cid;
 	
-	@Column(name="cate_name", nullable = false)
+	@Column(name="cate_name", columnDefinition = "nvarchar(100) not null")
 	private String cname;
 	
+	public CateEntity() {
+		
+	}
+	
+	
+	
+	public CateEntity(int cid, String cname) {
+		super();
+		this.cid = cid;
+		this.cname = cname;
+	}
+
+
+
 	public int getCid() {
 		return cid;
 	}

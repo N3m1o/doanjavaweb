@@ -1,61 +1,65 @@
 package com.laptrinhjavaweb.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.laptrinhjavaweb.entity.NewEntity;
-import com.laptrinhjavaweb.service.NewService;
+import com.laptrinhjavaweb.entity.NewsEntity;
+import com.laptrinhjavaweb.service.NewsService;
 
-@Controller
+@RestController
+@RequestMapping("/api/news")
 public class NewsController {
-	@Autowired
-	private NewService newService;
+	@Autowired 
+	private NewsService newsService;
 	
-	@RequestMapping("/")
-	public String getNewToScreen(Model model) {
-		List<NewEntity> newEntities = newService.getAllNew();
+	// lay ra tat ca bai viet
+	@GetMapping("find-all")
+	public List<NewsEntity> findAll(Model model) {
+		List<NewsEntity> newsList = newsService.findAll();
 		
-		model.addAttribute("news", newEntities);
-		
-		return "home";
+		model.addAttribute("newsList", newsList);		
+		return newsList;
 	}
 	
-	@RequestMapping(value = "add")
-	public String addNews(Model model) {
-		model.addAttribute("news", new NewEntity());
+	// lay ra 10 bai viet moi nhat
+	@GetMapping("find-last-news")
+	public String findLast(Model model) {
+		List<NewsEntity> lastList = newsService.findLast();
 		
-		return "addNews";
+		model.addAttribute("lastList", lastList);
+		return "find-last-news";
 	}
 	
+	// lay ra bai viet theo category id
+	@GetMapping("find-by-cate-id/{cid}")
+	public List<NewsEntity> findNewsByCateId(@PathVariable("cid") Integer cid, Model model){
+		List<NewsEntity> newsList = newsService.findById(cid);
+
+		model.addAttribute("newsByIdList", newsList);	
+		return newsList;
+	} 
 	
-	@RequestMapping(value = "edit", method = RequestMethod.GET)
-	public String editNews(@RequestParam("id") Integer id,Model model) {
-		Optional<NewEntity> newEdit = newService.findNewById(id);
-		model.addAttribute("news", newEdit);
+	// hien thi chi tiet bai viet
+	@GetMapping("find-by-news-id/{newsId}")
+	public NewsEntity findNewsByNewsId(@PathVariable("newsId") Integer newsId, Model model) {
+		NewsEntity newsDetails = newsService.findByIdNews(newsId);
 		
-		return "editNews";
+		model.addAttribute("newsDetails", newsDetails);
+		return newsDetails;
 	}
 	
-	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String saveNews(NewEntity newEntity) {
-		newService.saveNew(newEntity);
+	// tim kiem bai viet theo tu khoa co trong title
+	@GetMapping("find-by-like-title/{title}")
+	public List<NewsEntity> findNewsByName(@PathVariable("title") String title, Model model){
+		List<NewsEntity> list = newsService.findByTitle(title);
 		
-		return "";
+		model.addAttribute("newsTitle", list);
+		return null;
 	}
-	
-	
-	@RequestMapping(value = "delete", method = RequestMethod.DELETE)
-	public String deleteNews(@RequestParam("id") Integer id, Model model) {
-		newService.deleteNew(id);
-		
-		return "";
-	}
-	
 }
