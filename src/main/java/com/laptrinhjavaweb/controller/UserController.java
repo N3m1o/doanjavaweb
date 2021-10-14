@@ -1,7 +1,6 @@
 package com.laptrinhjavaweb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +21,10 @@ public class UserController {
 		if (userEntity.getUsername() != null && userEntity.getPassword() != null) {
 			try {
 				if (userService.findByUserAndPass(userEntity) != null) {
-					return "success";
+					return "redirect:/home";
 				}
 				else {
-					return "tài khoản hoặc mật khẩu không đúng";
+					return "login";
 				}
 			} catch (Exception e) {
 				return "error";
@@ -41,11 +40,12 @@ public class UserController {
 		if (userEntity.getFullname() != null && userEntity.getUsername() != null && userEntity.getPassword() != null) {
 			try {
 				if (userService.findByUser(userEntity) != null) {
-					return "username da ton tai";
+					System.out.println("username da ton tai");
+					return "/sign";
 				}
 				else {
 					userService.findById(userEntity);
-					return "success";
+					return "redirect:/login";
 				}
 			} catch (Exception e) {
 				return "error";
