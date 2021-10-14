@@ -27,13 +27,13 @@ public class NewsController {
 		return newsList;
 	}
 	
-	// lay ra 10 bai viet moi nhat
+	// lay ra 3 bai viet moi nhat
 	@GetMapping("find-last-news")
-	public String findLast(Model model) {
+	public List<NewsEntity> findLast(Model model) {
 		List<NewsEntity> lastList = newsService.findLast();
 		
 		model.addAttribute("lastList", lastList);
-		return "find-last-news";
+		return lastList;
 	}
 	
 	// lay ra bai viet theo category id
@@ -60,6 +60,6 @@ public class NewsController {
 		List<NewsEntity> list = newsService.findByTitle(title);
 		
 		model.addAttribute("newsTitle", list);
-		return null;
+		return list;
 	}
 }

@@ -19,13 +19,13 @@ public class UserEntity implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int userID;
 	
-	@Column(name = "username", columnDefinition = "nvarchar(MAX) not null")
+	@Column(name = "username", columnDefinition = "nvarchar(20) not null")
 	private String username;
 	
-	@Column(name = "password", columnDefinition = "nvarchar(MAX) not null")
+	@Column(name = "password", columnDefinition = "nvarchar(20) not null")
 	private String password;
 	
-	@Column(name = "fullname", columnDefinition = "nvarchar(MAX) not null")
+	@Column(name = "fullname", columnDefinition = "nvarchar(30) not null")
 	private String fullname;
 	
 	@Column(name = "date_of_birth")

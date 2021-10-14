@@ -41,7 +41,7 @@ public class UserController {
 			try {
 				if (userService.findByUser(userEntity) != null) {
 					System.out.println("username da ton tai");
-					return "/sign";
+					return null;
 				}
 				else {
 					userService.findById(userEntity);
