@@ -2,7 +2,6 @@ package com.laptrinhjavaweb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +16,7 @@ public class UserController {
 	
 	// login
 	@PostMapping("/login")
-	public String login(@RequestBody UserEntity userEntity) {
+	public String login(UserEntity userEntity) {
 		if (userEntity.getUsername() != null && userEntity.getPassword() != null) {
 			try {
 				if (userService.findByUserAndPass(userEntity) != null) {
@@ -36,12 +35,11 @@ public class UserController {
 	
 	// sign up
 	@PostMapping("/sign")
-	public String sign(@RequestBody UserEntity userEntity) {
+	public String sign(UserEntity userEntity) {
 		if (userEntity.getFullname() != null && userEntity.getUsername() != null && userEntity.getPassword() != null) {
 			try {
 				if (userService.findByUser(userEntity) != null) {
-					System.out.println("username da ton tai");
-					return null;
+					return "username da ton tai";
 				}
 				else {
 					userService.findById(userEntity);
