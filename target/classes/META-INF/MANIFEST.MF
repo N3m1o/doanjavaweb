@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Built-By: HL94NVT
-Build-Jdk: 16.0.2
 Implementation-Title: test1
 Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Admin42
 Implementation-Vendor-Id: com.test
-Implementation-Vendor: Pivotal Software, Inc.
+Build-Jdk: 1.8.0_301
 Implementation-URL: https://projects.spring.io/spring-boot/test/
 Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
 

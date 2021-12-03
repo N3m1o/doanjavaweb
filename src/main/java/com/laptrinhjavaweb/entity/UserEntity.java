@@ -40,6 +40,9 @@ public class UserEntity implements Serializable{
 	@Column(name = "is_admin", nullable = false)
 	private int isAdmin;
 	
+	@Column(columnDefinition = "nvarchar(500)")
+	private String short_description;
+	
 	public UserEntity() {
 	}
 	

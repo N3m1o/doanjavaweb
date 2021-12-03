@@ -41,6 +41,9 @@ public class NewsEntity implements Serializable{
 	@Column(nullable = false)
 	private boolean status;
 	
+	@Column(columnDefinition = "nvarchar(500)")
+	private String display_img;
+	
 	public NewsEntity() {
 	}
 
