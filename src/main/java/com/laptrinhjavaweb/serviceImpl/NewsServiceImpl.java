@@ -48,12 +48,20 @@ public class NewsServiceImpl implements NewsService{
 		}
 	}
 
-	public List<NewsEntity> findByTitle(String titleNews) {
+	public List<NewsEntity> search(String titleNews) {
 		try {
 			return newsRepository.findByLikeTitle(titleNews);
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	public void save(NewsEntity newsEntity) {
+		newsRepository.save(newsEntity);
+	}
+
+	public void delete(NewsEntity newsEntity) {
+		newsRepository.delete(newsEntity);
 	}
 	
 }

@@ -13,5 +13,9 @@ public interface NewsService {
 	
 	NewsEntity findByIdNews(Integer newsId);
 	
-	List<NewsEntity> findByTitle(String titleNews);
+	List<NewsEntity> search(String titleNews);
+	
+	void save(NewsEntity newsEntity);
+	
+	void delete(NewsEntity newsEntity);
 }
