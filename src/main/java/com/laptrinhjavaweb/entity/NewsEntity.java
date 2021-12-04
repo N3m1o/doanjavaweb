@@ -103,19 +103,13 @@ public class NewsEntity implements Serializable{
 		this.cateId = cateId;
 	}
 
-	
-
 	public UserEntity getUserId() {
 		return userId;
 	}
 
-
-
 	public void setUserId(UserEntity userId) {
 		this.userId = userId;
 	}
-
-
 
 	public boolean isStatus() {
 		return status;
@@ -124,10 +118,27 @@ public class NewsEntity implements Serializable{
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+	
+	
+
+	public String getDisplay_img() {
+		return display_img;
+	}
+
+
+
+	public void setDisplay_img(String display_img) {
+		this.display_img = display_img;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "NewEntity [newsId=" + newsId + ", title=" + title + ", shortDescription=" + shortDescription
-				+ ", content=" + content + ", cateId=" + cateId + ", userId=" + userId + ", status=" + status + "]";
+		return "NewsEntity [newsId=" + newsId + ", title=" + title + ", shortDescription=" + shortDescription
+				+ ", content=" + content + ", cateId=" + cateId + ", userId=" + userId + ", status=" + status
+				+ ", display_img=" + display_img + "]";
 	}
+
+	
 }

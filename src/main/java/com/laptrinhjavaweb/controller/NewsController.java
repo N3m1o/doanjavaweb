@@ -36,7 +36,7 @@ public class NewsController {
 	@GetMapping("/news/create")
 	public String create(Model model) {
 		model.addAttribute("news", new NewsEntity());
-		return "form";
+		return "PostManager";
 	}
 	
 	@GetMapping("/news/{id}/edit")
