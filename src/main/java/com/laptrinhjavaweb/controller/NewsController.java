@@ -39,10 +39,10 @@ public class NewsController {
 		return "PostManager";
 	}
 	
-	@GetMapping("/news/{id}/edit")
+	@GetMapping("/news/edit/{id}")
 	public String edit(@PathVariable int id, Model model) {
 		model.addAttribute("news", newsService.findByIdNews(id));
-		return "form";
+		return "PostManager";
 	}
 	
 	@PostMapping("/news/save")
@@ -52,15 +52,15 @@ public class NewsController {
 		}
 		newsService.save(newsEntity);
 		redirect.addFlashAttribute("success", "Luu bai thanh cong");
-		return "redirect:/news";
+		return "redirect:/PostManager";
 	}
 	
-	@GetMapping("/news/{id}/delete")
+	@GetMapping("/news/delete/{id}")
 	public String delete(@PathVariable int id, RedirectAttributes redirect) {
 		NewsEntity newsEntity = newsService.findByIdNews(id);
 				newsService.delete(newsEntity);
 		redirect.addFlashAttribute("success", "Xoa bai thanh cong");
-		return "redirect:/news";
+		return "redirect:/PostManager";
 	}
 	
 	@GetMapping("/news/search")

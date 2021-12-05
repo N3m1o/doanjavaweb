@@ -187,14 +187,15 @@ table.table .avatar {
 }
 /* Modal styles */
 .modal .modal-dialog {
-    max-width: 400px;
-    overflow: auto;
+    max-width: 1500px;
+    overflow-y: initial !important;
 }
 .modal .modal-header, .modal .modal-body, .modal .modal-footer {
     padding: 20px 30px;
 }
 .modal .modal-body{
-	overflow: auto;
+	height: 80vh;
+	overflow-y: auto;
 }
 .modal .modal-content {
     border-radius: 3px;

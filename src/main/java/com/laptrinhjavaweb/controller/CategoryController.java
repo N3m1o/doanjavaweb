@@ -19,7 +19,6 @@ public class CategoryController {
 	@GetMapping("find-all")
 	public List<CateEntity> findAll(Model model){
 		List<CateEntity> cateEntitiesList = categoryService.findAll();
-		
 		model.addAttribute("cateList", cateEntitiesList);
 		return cateEntitiesList;
 	}

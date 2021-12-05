@@ -25,7 +25,6 @@ public class CateEntity implements Serializable{
 	}
 	
 	
-	
 	public CateEntity(int cid, String cname) {
 		super();
 		this.cid = cid;
