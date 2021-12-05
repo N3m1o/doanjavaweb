@@ -18,4 +18,6 @@ public interface NewsService {
 	void save(NewsEntity newsEntity);
 	
 	void delete(NewsEntity newsEntity);
+	
+	NewsEntity editNews(int newsId, NewsEntity newsEntity);
 }

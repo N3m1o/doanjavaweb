@@ -7,5 +7,5 @@ public interface UserService {
 	
 	UserEntity findByUser(UserEntity userEntity);
 	
-	UserEntity findById(UserEntity userEntity);
+	UserEntity findByUserId(UserEntity userEntity);
 }

@@ -34,7 +34,7 @@ public class NewsServiceImpl implements NewsService{
 
 	public List<NewsEntity> findById(Integer categoryId) {
 		try {
-			return newsRepository.findByID(categoryId);
+			return newsRepository.findByCateID(categoryId);
 		} catch (Exception e) {
 			return null;
 		}
@@ -63,5 +63,14 @@ public class NewsServiceImpl implements NewsService{
 	public void delete(NewsEntity newsEntity) {
 		newsRepository.delete(newsEntity);
 	}
-	
+
+	public NewsEntity editNews(int newsId, NewsEntity newsEntity) {
+		NewsEntity update = newsRepository.findOneByIdNews(newsId);
+		update.setTitle(newsEntity.getTitle());
+		update.setDisplay_img(newsEntity.getDisplay_img());
+		update.setShortDescription(newsEntity.getShortDescription());
+		update.setContent(newsEntity.getContent());
+		update.setCateId(newsEntity.getCateId());
+		return newsRepository.save(update);
+	}
 }

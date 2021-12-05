@@ -1,15 +1,12 @@
 package com.laptrinhjavaweb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.laptrinhjavaweb.entity.UserEntity;
 import com.laptrinhjavaweb.service.UserService;
 
-@RestController
-@RequestMapping("api/user")
+@Controller
 public class UserController {
 	@Autowired
 	private UserService userService;
@@ -42,7 +39,7 @@ public class UserController {
 					return "username da ton tai";
 				}
 				else {
-					userService.findById(userEntity);
+					userService.findByUserId(userEntity);
 					return "redirect:/login";
 				}
 			} catch (Exception e) {

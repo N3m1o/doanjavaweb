@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 
-	public UserEntity findById(UserEntity userEntity) {
+	public UserEntity findByUserId(UserEntity userEntity) {
 		try {
 			return userRepository.findById(userEntity.getFullname(), userEntity.getGender(), userEntity.getUsername(), userEntity.getPassword());
 		} catch (Exception e) {

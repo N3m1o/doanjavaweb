@@ -15,11 +15,12 @@ public interface NewsRepository extends JpaRepository<NewsEntity, Integer>{
 	List<NewsEntity> findLastNews();
 	
 	@Query(value = "select * from news n where n.cate_id = ?1", nativeQuery = true)
-	List<NewsEntity> findByID(Integer cateId);
+	List<NewsEntity> findByCateID(Integer cateId);
 	
 	@Query(value = "select * from news n where n.news_id = ?1", nativeQuery = true)
 	NewsEntity findOneByIdNews(Integer newsId);
 	
 	@Query(value = "select * from news n where n.title like %?1%", nativeQuery = true)
 	List<NewsEntity> findByLikeTitle(String titleNews);
+	
 }
