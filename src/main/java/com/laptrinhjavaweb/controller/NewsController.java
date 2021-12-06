@@ -34,11 +34,20 @@ public class NewsController {
 	@RequestMapping(value = "/create")
 	public String findAll(Model model) {
 		model.addAttribute("news", newsService.findAll());
-		
 		List<CateEntity> cateEntitiesList = categoryService.findAll();
 		model.addAttribute("cateList", cateEntitiesList);
 		return "PostManager";
 	}
+	
+	// lay ra bai viet moi nhat
+	@RequestMapping(value = "/home")
+	public String findLastestNews(Model model) {
+		List<CateEntity> cateEntitiesList = categoryService.findAll();
+		model.addAttribute("cateList", cateEntitiesList);
+		model.addAttribute("lastestNews", newsService.findLast());
+		return "home";
+	}
+	
 	/**
 	@RequestMapping("")
 	public String showCreateNewsPage(Model model) {
