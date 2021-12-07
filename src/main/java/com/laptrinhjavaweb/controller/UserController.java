@@ -17,7 +17,7 @@ public class UserController {
 	
 	// login
 	@RequestMapping(value = "/login")
-	public String showFormLogin() {
+	public String showFormLogin(Model model) {
 		return "login";
 	}
 	
@@ -26,10 +26,9 @@ public class UserController {
 	public String login(UserEntity userEntity, Model model) {
 		if (userEntity.getUsername() != null && userEntity.getPassword() != null) 
 		{
-				if (userService.findByUserAndPass(userEntity) != null) {
+				if (userService.findByUserAndPass(userEntity) != null) 
 					return "home";
-				}
-					return "login";
+				return "login";
 		}
 		else 
 		{

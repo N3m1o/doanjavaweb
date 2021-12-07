@@ -43,7 +43,8 @@
               </div>
               <div role="tabpanel" class="tab-pane" id="video">
                 <div class="vide_area">
-                  <iframe width="100%" height="250" src="https://www.youtube.com/watch?v=t3NfzsSw5Eg" frameborder="0" allowfullscreen></iframe>
+              		<iframe width="100%" height="250" src="https://www.youtube.com/embed/BSG5iHK9Scw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  	<iframe width="100%" height="250" src="https://www.youtube.com/embed/SLD9xzJ4oeU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
               </div>
             </div>
@@ -58,5 +59,14 @@
               <li><a href="#">Login</a></li>
             </ul>
           </div>
+          					<div class="social_link">
+								<ul class="sociallink_nav">
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+								</ul>
+							</div>
         </aside>
       </div>

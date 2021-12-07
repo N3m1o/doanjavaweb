@@ -130,21 +130,6 @@
 						</div>
 					</div>
 				</div>
-				<nav class="nav-slit">
-					<a class="prev" href="#"> <span class="icon-wrap"><i
-							class="fa fa-angle-left"></i></span>
-						<div>
-							<h3>City Lights</h3>
-							<img src="../images/post_img1.jpg" alt="" />
-						</div>
-					</a> <a class="next" href="#"> <span class="icon-wrap"><i
-							class="fa fa-angle-right"></i></span>
-						<div>
-							<h3>Street Hills</h3>
-							<img src="../images/post_img1.jpg" alt="" />
-						</div>
-					</a>
-				</nav>
 				
 				<jsp:include page="lastest.jsp"></jsp:include>
 

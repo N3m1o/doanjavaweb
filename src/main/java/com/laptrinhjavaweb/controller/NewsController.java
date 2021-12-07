@@ -64,8 +64,8 @@ public class NewsController {
 		return "single_page";
 	}
 	
-	@RequestMapping(value = "/author", method = RequestMethod.POST)
-	public String createNews(@ModelAttribute("news") NewsEntity newsEntity) {
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String createNews(@ModelAttribute("news") NewsEntity newsEntity, RedirectAttributes redirect) {
 		newsService.save(newsEntity);
 		return "redirect:/PostManager";
 	}
@@ -94,6 +94,7 @@ public class NewsController {
 		return "redirect:/PostManager";
 	}
 	
+	// đã hoạt động
 	@RequestMapping("/delete/{id}")
 	public String delete(@PathVariable int id, RedirectAttributes redirect) {
 		NewsEntity newsEntity = newsService.findByIdNews(id);

@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,11 +48,10 @@ img {
 						</h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success"
-							data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm
-								bài viết</span></a> <a href="#deleteEmployeeModal" class="btn btn-danger"
-							data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Xóa
-								bài</span></a>
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
+						<i class="material-icons">&#xE147;</i> <span>Thêm bài viết</span></a> 
+						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
+						<i class="material-icons">&#xE15C;</i> <span>Xóa bài</span></a>
 					</div>
 				</div>
 			</div>
@@ -82,12 +81,12 @@ img {
 							<td><img src="${c.display_img}"></td>
 							<td>${c.shortDescription}</td>
 							<td>${c.content}</td>
-							<td><a href="/edit/${c.newsId}" class="edit"
-								data-toggle="modal"> <i class="material-icons"
-									data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-								href="/news/delete/${c.newsId}" class="delete"
-								data-toggle="modal"> <i class="material-icons"
-									data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
+							<td>
+								<a href="/edit/${c.newsId}" class="edit" data-toggle="modal"> 
+								<i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></a> 
+								<a href="/delete/${c.newsId}" class="delete" data-toggle="modal"> 
+								<i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i></a>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -107,8 +106,7 @@ img {
 				</ul>
 			</div>
 		</div>
-		<a href="#"><button type="button" class="btn btn-primary">Quay
-				lại trang chủ</button></a>
+		<a href="/home"><button type="button" class="btn btn-primary">Quay lại trang chủ</button></a>
 	</div>
 	<!-- Edit Modal HTML -->
 	<div id="addEmployeeModal" class="modal fade">
@@ -154,9 +152,8 @@ img {
 						</div>
 					</div>
 					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal"
-							value="Cancel"> <input type="submit"
-							class="btn btn-success" value="Add">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy"> 
+						<input type="submit" class="btn btn-success" value="Thêm">
 					</div>
 				</form>
 			</div>
@@ -179,9 +176,8 @@ img {
 						</p>
 					</div>
 					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal"
-							value="Cancel"> <input type="submit"
-							class="btn btn-danger" value="Xóa">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy"> 
+						<input type="submit" class="btn btn-danger" value="Xóa">
 					</div>
 				</form>
 			</div>
