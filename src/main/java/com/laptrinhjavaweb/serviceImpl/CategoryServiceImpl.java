@@ -22,5 +22,13 @@ public class CategoryServiceImpl implements CategoryService{
 			return null;
 		}
 	}
+
+	public CateEntity findCateName(int newsId) {
+		try {
+			return categoryRepository.findCateName(newsId);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 	
 }

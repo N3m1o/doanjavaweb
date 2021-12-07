@@ -24,14 +24,11 @@ public class CateEntity implements Serializable{
 		
 	}
 	
-	
 	public CateEntity(int cid, String cname) {
 		super();
 		this.cid = cid;
 		this.cname = cname;
 	}
-
-
 
 	public int getCid() {
 		return cid;

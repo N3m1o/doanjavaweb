@@ -14,4 +14,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 	
 	@Query(value = "insert into users u values (null, u.fullname = ?1, u.gender = ?2, 0, 0, u.username = ?3, u.password = ?4)", nativeQuery = true)
 	UserEntity findById(String fullname, Integer gender, String username, String password);
+	
+	@Query(value = "SELECT fullname FROM users JOIN news ON news.user_id = users.user_id WHERE news.news_id = ?1", nativeQuery = true)
+	String nameAuthor(int newsId);
 }

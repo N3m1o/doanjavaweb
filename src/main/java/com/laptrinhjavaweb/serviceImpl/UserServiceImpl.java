@@ -34,5 +34,10 @@ public class UserServiceImpl implements UserService{
 	public UserEntity findByUser(UserEntity userEntity) {
 		return userRepository.findByName(userEntity.getUsername());
 	}
+
+
+	public String nameAuthorByNewsId(int newsId) {
+		return userRepository.nameAuthor(newsId);
+	}
 	
 }

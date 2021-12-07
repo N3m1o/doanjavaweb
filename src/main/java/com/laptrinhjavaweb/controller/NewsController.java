@@ -19,6 +19,7 @@ import com.laptrinhjavaweb.entity.CateEntity;
 import com.laptrinhjavaweb.entity.NewsEntity;
 import com.laptrinhjavaweb.service.CategoryService;
 import com.laptrinhjavaweb.service.NewsService;
+import com.laptrinhjavaweb.service.UserService;
 
 
 @Controller
@@ -30,8 +31,11 @@ public class NewsController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@Autowired
+	private UserService userService;
+	
 	// lay ra tat ca bai viet
-	@RequestMapping(value = "/create")
+	@RequestMapping(value = "/author")
 	public String findAll(Model model) {
 		model.addAttribute("news", newsService.findAll());
 		List<CateEntity> cateEntitiesList = categoryService.findAll();
@@ -48,14 +52,19 @@ public class NewsController {
 		return "home";
 	}
 	
-	/**
-	@RequestMapping("")
-	public String showCreateNewsPage(Model model) {
-		model.addAttribute("news", new NewsEntity());
-		return "PostManager";
-	}**/
+	//chi tiet bai viet
+	@RequestMapping("/details/{newsId}")
+	public String showDetailsPage(Model model, @PathVariable int newsId) {
+		//model.addAttribute("cate", categoryService.findCateName(newsId));
+		//model.addAttribute("author", userService.nameAuthorByNewsId(newsId));
+		
+		model.addAttribute("lastestNews", newsService.findLast());
+		model.addAttribute("cateList", categoryService.findAll());
+		model.addAttribute("details", newsService.findByIdNews(newsId));
+		return "single_page";
+	}
 	
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/author", method = RequestMethod.POST)
 	public String createNews(@ModelAttribute("news") NewsEntity newsEntity) {
 		newsService.save(newsEntity);
 		return "redirect:/PostManager";

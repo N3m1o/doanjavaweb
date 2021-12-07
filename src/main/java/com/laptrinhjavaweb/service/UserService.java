@@ -8,4 +8,6 @@ public interface UserService {
 	UserEntity findByUser(UserEntity userEntity);
 	
 	UserEntity findByUserId(UserEntity userEntity);
+	
+	String nameAuthorByNewsId(int newsId);
 }

@@ -34,14 +34,13 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav main_nav">
-          <li class="active"><a href="home.jsp"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+          <li class="active"><a href="/home"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
           <li>
           		<c:forEach var="c" items="${cateList}">
           			<a href="#">${c.cname}</a>
           		</c:forEach>>
           </li>
-          <li><a href="pages/contact.html">Liên hệ</a></li>
-          <li><a href="pages/404.html">404 Page</a></li>
+          <li><a href="contact.jsp">Liên hệ</a></li>
         </ul>
       </div>
     </nav>
@@ -51,33 +50,18 @@
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="slick_slider">
         <c:forEach var="o" items="${lastestNews}">
-          <div class="single_iteam"> <a href="pages/single_page.html"> <img src="${o.display_img}" alt=""></a>
+          <div class="single_iteam"> <a href="/details/${o.newsId}"> <img src="${o.display_img}" alt=""></a>
             <div class="slider_article">
-              <h2><a class="slider_tittle" href="pages/single_page.html">${o.title}</a></h2>
+              <h2><a class="slider_tittle" href="/details/${o.newsId}">${o.title}</a></h2>
               <p>${o.shortDescription}</p>
             </div>
           </div>
         </c:forEach>
           </div>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-4">
-        <div class="latest_post">
-          <h2><span>Bài viết mới nhất</span></h2>
-          <div class="latest_post_container">
-            <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
-            <ul class="latest_postnav">
-            <c:forEach var="o" items="${lastestNews}">
-              <li>
-                <div class="media"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="${o.display_img}"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title">${o.title}</a> </div>
-                </div>
-              </li>
-             </c:forEach>
-            </ul>
-            <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
-          </div>
-        </div>
-      </div>
+      
+      <jsp:include page="lastest.jsp"></jsp:include>
+      
     </div>
   </section>
   <section id="contentSection">
