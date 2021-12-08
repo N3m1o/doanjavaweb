@@ -20,4 +20,6 @@ public interface NewsService {
 	void delete(NewsEntity newsEntity);
 	
 	NewsEntity editNews(int newsId, NewsEntity newsEntity);
+	
+	List<NewsEntity> findNewsByUserId(int userId);
 }

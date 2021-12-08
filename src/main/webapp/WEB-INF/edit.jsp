@@ -22,7 +22,8 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/manager.css"
 	rel="stylesheet" />
-	<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 <style>
 img {
 	width: 200px;
@@ -58,33 +59,43 @@ img {
 									type="text" class="form-control" readonly required>
 							</div>
 							<div class="form-group">
-								<label>Tiêu đề</label> <input value="${news.title}" name="name"
+								<label>Tiêu đề</label> <input value="${news.title}" name="title"
 									type="text" class="form-control" required>
 							</div>
 							<div class="form-group">
-								<label>Ảnh đại diện</label> <input value="${news.display_img}" name="image"
-									type="text" class="form-control" required>
+								<label>Ảnh đại diện</label> <input value="${news.display_img}"
+									name="display_image" type="text" class="form-control" required>
+							</div>
+
+							<div class="form-group">
+								<label>Nội dung</label>
+								<textarea name="content" class="form-control" required
+									id="content">${news.content}</textarea>
+								<script type="text/javascript">
+									CKEDITOR.replace('content', {
+										width : "560px",
+										height : "700px"
+									});
+								</script>
+								<div class="form-group">
+									<label>Mô tả ngắn</label>
+									<textarea name="short_description" class="form-control"
+										required>${news.shortDescription}</textarea>
+								</div>
 							</div>
 							<div class="form-group">
-								<label>Mô tả ngắn</label>
-								<textarea name="title" class="form-control" required>${news.shortDescription}</textarea>
-							</div>
-							<div class="form-group">
-							<label>Nội dung</label>
-							<textarea name="content" class="form-control" required
-								id="content"></textarea>
-							<script type="text/javascript">
-								CKEDITOR.replace('content', {
-									width : "560px",
-									height : "700px"
-								});
-							</script>
-						</div>
-							<div class="form-group">
-								<label>Thể loại</label> <select name="category" class="form-select" aria-label="Default select example"
-								style = "width: 120px; margin-left: 30px;">
+								<label>Thể loại</label> <select name="category"
+									class="form-select" aria-label="Default select example"
+									style="width: 120px; margin-left: 30px;">
 									<c:forEach var="c" items="${cateList}">
-										<option value="${c.cid}">${c.cname}</option>
+										<c:choose>
+											<c:when test="${c.cid==news.cateId.cid}">
+												<option value="${c.cid}" selected>${c.cname}</option>
+											</c:when>
+											<c:otherwise>
+												<option value="${c.cid}">${c.cname}</option>
+											</c:otherwise>
+										</c:choose>
 									</c:forEach>
 								</select>
 							</div>

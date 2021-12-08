@@ -23,4 +23,7 @@ public interface NewsRepository extends JpaRepository<NewsEntity, Integer>{
 	@Query(value = "select * from news n where n.title like %?1%", nativeQuery = true)
 	List<NewsEntity> findByLikeTitle(String titleNews);
 	
+	@Query(value = "select * from news n where n.user_id =?1", nativeQuery = true)
+	List<NewsEntity> findNewsByUserId(int userId);
+	
 }

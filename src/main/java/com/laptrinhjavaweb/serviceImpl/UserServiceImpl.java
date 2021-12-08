@@ -39,5 +39,12 @@ public class UserServiceImpl implements UserService{
 	public String nameAuthorByNewsId(int newsId) {
 		return userRepository.nameAuthor(newsId);
 	}
+
+
+	@Override
+	public UserEntity getUserByUsername(String username) {
+		// TODO Auto-generated method stub
+		return userRepository.findByName(username);
+	}
 	
 }

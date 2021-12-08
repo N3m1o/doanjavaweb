@@ -22,17 +22,17 @@
                 <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Đăng nhập</h1>
                 
                 <p class="text-danger">${mess}</p>
-                <input name="user"  type="text" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="">
-                <input name="pass"  type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+                <input name="username"  type="text" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="">
+                <input name="password"  type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
 
                 <div class="form-group form-check">
                     <input name="remember" value="1" type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Ghi nhớ</label>
                 </div>
 
-                <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i>Đăng nhập</button>
+                <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Đăng nhập</button>
                 <hr>
-                <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i>Đăng kí tài khoản</button>
+                <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Đăng kí tài khoản</button>
             </form>
 
             <form action="signup" method="post" class="form-signup">

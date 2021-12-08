@@ -8,4 +8,8 @@ public interface CategoryService {
 	List<CateEntity> findAll();
 	
 	CateEntity findCateName(int newsId);
+	
+	CateEntity findCateByName(String cateName);
+	
+	CateEntity findCateById(int cateId);
 }

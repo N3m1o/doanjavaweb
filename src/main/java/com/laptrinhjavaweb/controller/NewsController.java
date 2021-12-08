@@ -2,12 +2,13 @@ package com.laptrinhjavaweb.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.laptrinhjavaweb.entity.CateEntity;
 import com.laptrinhjavaweb.entity.NewsEntity;
+import com.laptrinhjavaweb.entity.UserEntity;
 import com.laptrinhjavaweb.service.CategoryService;
 import com.laptrinhjavaweb.service.NewsService;
 import com.laptrinhjavaweb.service.UserService;
@@ -36,8 +38,11 @@ public class NewsController {
 	
 	// lay ra tat ca bai viet
 	@RequestMapping(value = "/author")
-	public String findAll(Model model) {
-		model.addAttribute("news", newsService.findAll());
+	public String findAll(Model model, HttpSession httpSession) {
+		Object obj = httpSession.getAttribute("userEntity");
+		UserEntity userEntity = (UserEntity)obj;
+		int userId = userEntity.getUserID();
+		model.addAttribute("news", newsService.findNewsByUserId(userId));
 		List<CateEntity> cateEntitiesList = categoryService.findAll();
 		model.addAttribute("cateList", cateEntitiesList);
 		return "PostManager";
@@ -64,10 +69,23 @@ public class NewsController {
 		return "single_page";
 	}
 	
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String createNews(@ModelAttribute("news") NewsEntity newsEntity, RedirectAttributes redirect) {
+	@RequestMapping(value = "/author", params = {"title","display_image","content","short_description","category"}, method = RequestMethod.POST)
+	public String createNews(@RequestParam("title")String title,@RequestParam("display_image")String display_image,
+			@RequestParam("content")String content,@RequestParam("short_description")String short_description, @RequestParam("category")int category
+			,HttpSession httpSession) {
+		CateEntity cateEntity = categoryService.findCateById(category);
+		Object obj = httpSession.getAttribute("userEntity");
+		UserEntity userEntity = (UserEntity)obj;
+		NewsEntity newsEntity = new NewsEntity();
+		newsEntity.setContent(content);
+		newsEntity.setDisplay_img(display_image);
+		newsEntity.setShortDescription(short_description);
+		newsEntity.setStatus(true);
+		newsEntity.setTitle(title);
+		newsEntity.setUserId(userEntity);
+		newsEntity.setCateId(cateEntity);
 		newsService.save(newsEntity);
-		return "redirect:/PostManager";
+		return "redirect:/author";
 	}
 	
 	@RequestMapping("/edit/{newsId}")
@@ -78,14 +96,29 @@ public class NewsController {
 		return "edit";
 	}
 	
-	@RequestMapping(value = "/edit/{newsId}", method = RequestMethod.POST)
-	public String editNews(@PathVariable int newsId, @ModelAttribute("news") NewsEntity newsEntity) {
-		newsService.editNews(newsId, newsEntity);
-		return "redirect:/PostManager";
+	@RequestMapping(value = "/edit/{newsId}", params = {"id","title","display_image","content","short_description","category"}, method = RequestMethod.POST)
+	public String editNews(@RequestParam("id")int newsId,@RequestParam("title")String title,@RequestParam("display_image")String display_image,
+			@RequestParam("content")String content,@RequestParam("short_description")String short_description, @RequestParam("category")int category
+			,HttpSession httpSession) {
+		
+		CateEntity cateEntity = categoryService.findCateById(category);
+		Object obj = httpSession.getAttribute("userEntity");
+		UserEntity userEntity = (UserEntity)obj;
+		NewsEntity newsEntity = new NewsEntity();
+		newsEntity.setContent(content);
+		newsEntity.setDisplay_img(display_image);
+		newsEntity.setShortDescription(short_description);
+		newsEntity.setStatus(true);
+		newsEntity.setTitle(title);
+		newsEntity.setUserId(userEntity);
+		newsEntity.setCateId(cateEntity);
+		newsEntity.setNewsId(newsId);
+		newsService.save(newsEntity);
+		return "redirect:/author";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@Valid NewsEntity newsEntity, BindingResult result, RedirectAttributes redirect) {
+	public String save(@Validated NewsEntity newsEntity, BindingResult result, RedirectAttributes redirect) {
 		if (result.hasErrors()) {
 			return "form";
 		}
@@ -95,12 +128,12 @@ public class NewsController {
 	}
 	
 	// đã hoạt động
-	@RequestMapping("/delete/{id}")
+	@RequestMapping("/delete/{id}" )
 	public String delete(@PathVariable int id, RedirectAttributes redirect) {
 		NewsEntity newsEntity = newsService.findByIdNews(id);
 				newsService.delete(newsEntity);
-		redirect.addFlashAttribute("success", "Xoa bai thanh cong");
-		return "redirect:/PostManager";
+
+		return "redirect:/author";
 	}
 	
 	@RequestMapping("/search")
@@ -111,4 +144,5 @@ public class NewsController {
 		model.addAttribute("news",newsService.search(s));
 		return "list";
 	}
+
 }

@@ -108,11 +108,11 @@ img {
 		</div>
 		<a href="/home"><button type="button" class="btn btn-primary">Quay lại trang chủ</button></a>
 	</div>
-	<!-- Edit Modal HTML -->
+	<!-- Add Modal HTML -->
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="/create" method="post">
+				<form action="/author" method="post">
 					<div class="modal-header">
 						<h4 class="modal-title">Thêm bài viết</h4>
 						<button type="button" class="close" data-dismiss="modal"
@@ -124,7 +124,7 @@ img {
 								class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Ảnh đại diện</label> <input name="image" type="text"
+							<label>Ảnh đại diện</label> <input name="display_image" type="text"
 								class="form-control" required>
 						</div>
 						<div class="form-group">
@@ -140,7 +140,7 @@ img {
 						</div>
 						<div class="form-group">
 							<label>Mô tả ngắn</label>
-							<textarea name="description" class="form-control" required></textarea>
+							<textarea name="short_description" class="form-control" required></textarea>
 						</div>
 						<div class="form-group">
 							<label>Thể loại</label>
@@ -183,6 +183,10 @@ img {
 			</div>
 		</div>
 	</div>
+	<!-- Edit Model HTML -->
+	
+
+
 	<script src="${pageContext.request.contextPath}/resources/js/manager.js" type="text/javascript"></script>
 </body>
 </html>

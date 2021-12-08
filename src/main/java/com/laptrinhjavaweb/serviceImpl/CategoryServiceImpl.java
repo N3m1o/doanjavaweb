@@ -30,5 +30,25 @@ public class CategoryServiceImpl implements CategoryService{
 			return null;
 		}
 	}
+
+	@Override
+	public CateEntity findCateByName(String cateName) {
+		// TODO Auto-generated method stub
+		try {
+			return categoryRepository.findCateByName(cateName);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public CateEntity findCateById(int cateId) {
+		// TODO Auto-generated method stub
+		try {
+			return categoryRepository.findCateById(cateId);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 	
 }
