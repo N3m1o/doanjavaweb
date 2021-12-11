@@ -37,7 +37,7 @@
           <li class="active"><a href="/home"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
           <li>
           		<c:forEach var="c" items="${cateList}">
-          			<a href="#">${c.cname}</a>
+          			<a href="/category/${c.cid}">${c.cname}</a>
           		</c:forEach>>
           </li>
           <li><a href="contact.jsp">Liên hệ</a></li>

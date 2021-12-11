@@ -15,7 +15,7 @@
             <ul class="tag_nav">
               <li>
           		<c:forEach var="c" items="${cateList}">
-          			<a href="#">${c.cname}</a>
+          			<a href="/category/${c.cid}">${c.cname}</a>
           		</c:forEach>
           	</li>
             </ul>

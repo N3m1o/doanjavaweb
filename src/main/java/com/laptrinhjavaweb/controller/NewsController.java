@@ -150,5 +150,16 @@ public class NewsController {
 		model.addAttribute("news",newsService.search(s));
 		return "list";
 	}
+	
+	//test
+	@RequestMapping("/category/{cateId}")
+	public String showCate(Model model, @PathVariable int cateId) {
+		
+		model.addAttribute("lastestNews", newsService.findLast());
+		model.addAttribute("cateList", categoryService.findAll());
+		model.addAttribute("random", newsService.findNewsRandom());
+		model.addAttribute("cate", newsService.findById(cateId));
+		return "list";
+	}
 
 }

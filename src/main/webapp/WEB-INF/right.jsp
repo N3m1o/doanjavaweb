@@ -24,7 +24,7 @@
               <div role="tabpanel" class="tab-pane active" id="category">
                 <ul>
                 <c:forEach var="c" items="${cateList}">
-                  <li class="cat-item"><a href="#">${c.cname}</a></li>
+                  <li class="cat-item"><a href="/category/${c.cid}">${c.cname}</a></li>
                 </c:forEach>
                 </ul>
               </div>

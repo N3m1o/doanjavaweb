@@ -37,8 +37,8 @@
           <li class="active"><a href="/home"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
           <li>
           		<c:forEach var="c" items="${cateList}">
-          			<a href="/category/${c.cid}">${c.cname}</a>
-          		</c:forEach>>
+          		<a href="/category/${c.cid}" >${c.cname}</a>
+          		</c:forEach>
           </li>
           <li><a href="contact.jsp">Liên hệ</a></li>
         </ul>
@@ -51,23 +51,17 @@
 				<div class="col-lg-8 col-md-8 col-sm-8">
 					<div class="left_content">
 						<div class="single_page">
-							<ol class="breadcrumb">
-								<li><a href="/home">Trang chủ</a></li>
-								<li><a href="/category/${cate.cid}">${cate.cname}</a></li>
-							</ol>
-							<h1>${details.title}</h1>
-							<div class="post_commentbox">
-								<a href="#"><i class="fa fa-user"></i>${person.fullname}</a> 
-								<a href="/category/${cate.cid}"> <i class="fa fa-tags"></i>${cate.cname}</a>
-							</div>
-							<div class="single_page_content">
-								<img class="img-center" src="${details.display_img}" alt="">
-								
-								<blockquote>${details.shortDescription}</blockquote>
-								<p>${details.content}</p>
-								<br>
-								<p align = "right"><b>Tác giả: ${person.fullname}</b></p>
-							</div>
+						
+							<ul class="spost_nav">
+            					<c:forEach var="r" items="${cate}">
+              						<li>
+                					<div class="media wow fadeInDown"> <a href="/details/${r.newsId}" class="media-left"> <img alt="" src="${r.display_img}"> </a>
+                  						<div class="media-body"> <a href="/details/${r.newsId}" class="catg_title">${r.title}</a> </div>
+                					</div>
+              						</li>
+              					</c:forEach>
+            				</ul>
+						
 							<div class="social_link">
 								<ul class="sociallink_nav">
 									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -77,23 +71,15 @@
 									<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
 								</ul>
 							</div>
+							
 							<div class="related_post">
 								<h2>
-									Bài viết liên quan
+									
 								</h2>
 								<ul class="spost_nav wow fadeInDown animated">
-								<c:forEach var="r" items="${random}">
-									<li>
-										<div class="media">
-											<a class="media-left" href="/details/${r.newsId}"> 
-												<img src="${r.display_img}">
-											</a>
-											<div class="media-body">
-												<a class="catg_title" href="/details/${r.newsId}">${r.title}</a>
-											</div>
-										</div>
-									</li>
-								</c:forEach>
+									<li></li>
+									<li></li>
+									<li></li>
 								</ul>
 							</div>
 						</div>
