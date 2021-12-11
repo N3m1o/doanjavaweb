@@ -88,7 +88,6 @@ img {
 								<i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i></a>
 							</td>
 						</tr>
-						
 					</c:forEach>
 				</tbody>
 			</table>

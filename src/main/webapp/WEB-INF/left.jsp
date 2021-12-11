@@ -8,7 +8,7 @@
             
             <div class="single_post_content_left">
               <ul class="business_catgnav wow fadeInDown">
-              <c:forEach var="c" items="${news}">
+              <c:forEach var="c" items="${cate}">
                 <li>
                   <figure class="bsbig_fig"> <a href="/details/${c.newsId}" class="featured_img"> <img alt="" src="${c.display_img}"> <span class="overlay"></span> </a>
                     <figcaption> <a href="/details/${c.newsId}">${c.title}</a></figcaption>
@@ -21,7 +21,7 @@
             
             <div class="single_post_content_right">
               <ul class="spost_nav">
-              <c:forEach var="c" items="${news}">
+              <c:forEach var="c" items="${cate}">
                 <li>
                   <div class="media wow fadeInDown"> <a href="/details/${c.newsId}" class="media-left"> <img alt="" src="${c.display_img}"> </a>
                     <div class="media-body"> <a href="/details/${c.newsId}" class="catg_title">${c.title}</a> </div>

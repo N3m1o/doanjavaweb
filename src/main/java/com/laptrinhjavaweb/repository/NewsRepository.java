@@ -29,4 +29,6 @@ public interface NewsRepository extends JpaRepository<NewsEntity, Integer>{
 	@Query(value = "SELECT TOP 6 * FROM news n ORDER BY NEWID()", nativeQuery = true)
 	List<NewsEntity> findNewsRandom();
 	
+	
+	
 }
