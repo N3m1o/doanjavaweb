@@ -36,7 +36,7 @@ public class NewsController {
 	@Autowired
 	private UserService userService;
 	
-	// lay ra tat ca bai viet
+	// hiển thị bài viết của nhà báo
 	@RequestMapping(value = "/author")
 	public String findAll(Model model, HttpSession httpSession) {
 		Object obj = httpSession.getAttribute("userEntity");
@@ -48,12 +48,14 @@ public class NewsController {
 		return "PostManager";
 	}
 	
-	// lay ra bai viet moi nhat
+	// lấy ra bài viết hiển thị trên trang chủ
 	@RequestMapping(value = "/home")
 	public String findLastestNews(Model model) {
 		List<CateEntity> cateEntitiesList = categoryService.findAll();
 		model.addAttribute("cateList", cateEntitiesList);
+		model.addAttribute("random", newsService.findNewsRandom());
 		model.addAttribute("lastestNews", newsService.findLast());
+		model.addAttribute("news", newsService.findAll());
 		return "home";
 	}
 	
@@ -66,6 +68,9 @@ public class NewsController {
 		model.addAttribute("lastestNews", newsService.findLast());
 		model.addAttribute("cateList", categoryService.findAll());
 		model.addAttribute("details", newsService.findByIdNews(newsId));
+		model.addAttribute("random", newsService.findNewsRandom());
+		model.addAttribute("cate", categoryService.findCateName(newsId));
+		model.addAttribute("person", userService.findNameAuthorByNewsId(newsId));
 		return "single_page";
 	}
 	

@@ -88,6 +88,7 @@ img {
 								<i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i></a>
 							</td>
 						</tr>
+						
 					</c:forEach>
 				</tbody>
 			</table>
@@ -97,9 +98,9 @@ img {
 				</div>
 				<ul class="pagination">
 					<li class="page-item disabled"><a href="#">Trước</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
+					<li class="page-item active"><a href="#" class="page-link">1</a></li>
 					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item active"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">3</a></li>
 					<li class="page-item"><a href="#" class="page-link">4</a></li>
 					<li class="page-item"><a href="#" class="page-link">5</a></li>
 					<li class="page-item"><a href="#" class="page-link">Sau</a></li>
@@ -108,6 +109,7 @@ img {
 		</div>
 		<a href="/home"><button type="button" class="btn btn-primary">Quay lại trang chủ</button></a>
 	</div>
+	
 	<!-- Add Modal HTML -->
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
@@ -159,15 +161,15 @@ img {
 			</div>
 		</div>
 	</div>
-	<!-- Delete Modal HTML -->
+	
+	<!-- Delete Modal HTML--> 
 	<div id="deleteEmployeeModal" class="modal fade">
 		<div class="modal-dialog" style="max-width: 500px;">
 			<div class="modal-content">
 				<form>
 					<div class="modal-header">
 						<h4 class="modal-title">Xóa bài viết</h4>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body" style="height: 200px;">
 						<p>Bạn có chắc muốn xóa bài viết này không?</p>
@@ -183,10 +185,7 @@ img {
 			</div>
 		</div>
 	</div>
-	<!-- Edit Model HTML -->
 	
-
-
 	<script src="${pageContext.request.contextPath}/resources/js/manager.js" type="text/javascript"></script>
 </body>
 </html>

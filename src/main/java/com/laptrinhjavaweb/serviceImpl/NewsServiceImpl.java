@@ -2,7 +2,6 @@ package com.laptrinhjavaweb.serviceImpl;
 
 import java.util.List;
 
-import org.hibernate.engine.transaction.jta.platform.internal.SapNetWeaverJtaPlatform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -79,6 +78,15 @@ public class NewsServiceImpl implements NewsService {
 		// TODO Auto-generated method stub
 		try {
 			return newsRepository.findNewsByUserId(userId);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<NewsEntity> findNewsRandom() {
+		try {
+			return newsRepository.findNewsRandom();
 		} catch (Exception e) {
 			return null;
 		}

@@ -22,4 +22,6 @@ public interface NewsService {
 	NewsEntity editNews(int newsId, NewsEntity newsEntity);
 	
 	List<NewsEntity> findNewsByUserId(int userId);
+	
+	List<NewsEntity> findNewsRandom();
 }

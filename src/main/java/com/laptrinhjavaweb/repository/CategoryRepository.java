@@ -11,7 +11,7 @@ public interface CategoryRepository extends JpaRepository<CateEntity, Integer>{
 	@Query(value = "select * from category", nativeQuery = true)
 	List<CateEntity> findAllBy();
 	
-	@Query(value = "SELECT DISTINCT * FROM category JOIN news ON news.cate_id = category.cate_id WHERE news.news_id = ?1", nativeQuery = true)
+	@Query(value = "SELECT DISTINCT * FROM category c JOIN news n ON n.cate_id = c.cate_id WHERE n.news_id = ?1", nativeQuery = true)
 	CateEntity findCateName(int newsId);
 	
 	@Query(value = "SELECT * FROM category c WHERE c.cate_name = ?1", nativeQuery = true)

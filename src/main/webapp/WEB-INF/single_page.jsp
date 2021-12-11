@@ -7,24 +7,15 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/animate.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/font.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/li-scroller.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/slick.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/jquery.fancybox.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/theme.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/animate.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/li-scroller.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/slick.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery.fancybox.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/theme.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 
 </head>
 <body>
@@ -61,22 +52,21 @@
 					<div class="left_content">
 						<div class="single_page">
 							<ol class="breadcrumb">
-								<li><a href="../index.html">Trang chủ</a></li>
+								<li><a href="/home">Trang chủ</a></li>
 								<li><a href="#">${cate.cname}</a></li>
 							</ol>
 							<h1>${details.title}</h1>
 							<div class="post_commentbox">
-								<a href="#"><i class="fa fa-user"></i>${author.fullname}</a> 
+								<a href="#"><i class="fa fa-user"></i>${person.fullname}</a> 
 								<a href="#"> <i class="fa fa-tags"></i>${cate.cname}</a>
 							</div>
 							<div class="single_page_content">
-								<img class="img-center" src="${details.display_img}"
-									alt="">
+								<img class="img-center" src="${details.display_img}" alt="">
 								
 								<blockquote>${details.shortDescription}</blockquote>
 								<p>${details.content}</p>
-								
-								
+								<br>
+								<p align = "right"><b>Tác giả: ${person.fullname}</b></p>
 							</div>
 							<div class="social_link">
 								<ul class="sociallink_nav">
@@ -89,42 +79,21 @@
 							</div>
 							<div class="related_post">
 								<h2>
-									Related Post <i class="fa fa-thumbs-o-up"></i>
+									Bài viết liên quan
 								</h2>
 								<ul class="spost_nav wow fadeInDown animated">
+								<c:forEach var="r" items="${random}">
 									<li>
 										<div class="media">
-											<a class="media-left" href="single_page.html"> <img
-												src="../images/post_img1.jpg" alt="">
+											<a class="media-left" href="/details/${r.newsId}"> 
+												<img src="${r.display_img}">
 											</a>
 											<div class="media-body">
-												<a class="catg_title" href="single_page.html"> Aliquam
-													malesuada diam eget turpis varius</a>
+												<a class="catg_title" href="/details/${r.newsId}">${r.title}</a>
 											</div>
 										</div>
 									</li>
-									<li>
-										<div class="media">
-											<a class="media-left" href="single_page.html"> <img
-												src="../images/post_img2.jpg" alt="">
-											</a>
-											<div class="media-body">
-												<a class="catg_title" href="single_page.html"> Aliquam
-													malesuada diam eget turpis varius</a>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="media">
-											<a class="media-left" href="single_page.html"> <img
-												src="../images/post_img1.jpg" alt="">
-											</a>
-											<div class="media-body">
-												<a class="catg_title" href="single_page.html"> Aliquam
-													malesuada diam eget turpis varius</a>
-											</div>
-										</div>
-									</li>
+								</c:forEach>
 								</ul>
 							</div>
 						</div>

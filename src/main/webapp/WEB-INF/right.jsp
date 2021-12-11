@@ -6,26 +6,13 @@
           <div class="single_sidebar">
             <h2><span>Popular Post</span></h2>
             <ul class="spost_nav">
+            <c:forEach var="r" items="${random}">
               <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="${pageContext.request.contextPath}/resources/images/post_img1.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                <div class="media wow fadeInDown"> <a href="/details/${r.newsId}" class="media-left"> <img alt="" src="${r.display_img}"> </a>
+                  <div class="media-body"> <a href="/details/${r.newsId}" class="catg_title">${r.title}</a> </div>
                 </div>
               </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="${pageContext.request.contextPath}/resources/images/post_img2.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="${pageContext.request.contextPath}/resources/images/post_img1.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="${pageContext.request.contextPath}/resources/images/post_img2.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                </div>
-              </li>
+              </c:forEach>
             </ul>
           </div>
           <div class="single_sidebar">
@@ -44,7 +31,6 @@
               <div role="tabpanel" class="tab-pane" id="video">
                 <div class="vide_area">
               		<iframe width="100%" height="250" src="https://www.youtube.com/embed/BSG5iHK9Scw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  	<iframe width="100%" height="250" src="https://www.youtube.com/embed/SLD9xzJ4oeU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
               </div>
             </div>
