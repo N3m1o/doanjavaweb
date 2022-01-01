@@ -91,4 +91,31 @@ public class NewsServiceImpl implements NewsService {
 			return null;
 		}
 	}
+
+	@Override
+	public List<NewsEntity> relatestPost(int cateId) {
+		try {
+			return newsRepository.relatestPost(cateId);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<NewsEntity> findNewsForRight(Integer cateId) {
+		try {
+			return newsRepository.findNewsForRight(cateId);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<NewsEntity> findNewsForLeft(Integer cateId) {
+		try {
+			return newsRepository.findNewsForLeft(cateId);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

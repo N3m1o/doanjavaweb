@@ -38,7 +38,6 @@ UserEntity userEntity = (UserEntity)object;
 
 					</ul>
 				</div>
-
 			</div>
 		</div>
 		<div class="col-lg-12 col-md-12 col-sm-12">

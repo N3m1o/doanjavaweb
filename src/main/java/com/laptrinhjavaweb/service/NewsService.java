@@ -11,6 +11,10 @@ public interface NewsService {
 	
 	List<NewsEntity> findById(Integer cateId);
 	
+	List<NewsEntity> findNewsForRight(Integer cateId);
+	
+	List<NewsEntity> findNewsForLeft(Integer cateId);
+	
 	NewsEntity findByIdNews(Integer newsId);
 	
 	List<NewsEntity> search(String titleNews);
@@ -24,4 +28,6 @@ public interface NewsService {
 	List<NewsEntity> findNewsByUserId(int userId);
 	
 	List<NewsEntity> findNewsRandom();
+	
+	List<NewsEntity> relatestPost(int cateId);
 }

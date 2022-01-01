@@ -8,7 +8,7 @@
             
             <div class="single_post_content_left">
               <ul class="business_catgnav wow fadeInDown">
-              <c:forEach var="c" items="${cate}">
+              <c:forEach var="c" items="${sportLeft}">
                 <li>
                   <figure class="bsbig_fig"> <a href="/details/${c.newsId}" class="featured_img"> <img alt="" src="${c.display_img}"> <span class="overlay"></span> </a>
                     <figcaption> <a href="/details/${c.newsId}">${c.title}</a></figcaption>
@@ -21,7 +21,7 @@
             
             <div class="single_post_content_right">
               <ul class="spost_nav">
-              <c:forEach var="c" items="${cate}">
+              <c:forEach var="c" items="${sportRight}">
                 <li>
                   <div class="media wow fadeInDown"> <a href="/details/${c.newsId}" class="media-left"> <img alt="" src="${c.display_img}"> </a>
                     <div class="media-body"> <a href="/details/${c.newsId}" class="catg_title">${c.title}</a> </div>
@@ -37,21 +37,11 @@
             
               <div class="single_post_content">
                 <h2><span>Văn Hóa</span></h2>
-                <ul class="business_catgnav wow fadeInDown">
-                <c:forEach var="c" items="${news}">
-                  <li>
-                    <figure class="bsbig_fig"> <a href="/details/${c.newsId}" class="featured_img"> <img alt="" src="${c.display_img}"> <span class="overlay"></span> </a>
-                    	<figcaption> <a href="/details/${c.newsId}">${c.title}</a> </figcaption>
-                    	<p>${o.shortDescription}</p>
-                  	</figure>
-                  </li>
-                  </c:forEach>
-                </ul>
                 <ul class="spost_nav">
-                <c:forEach var="c" items="${news}">
+                <c:forEach var="v" items="${cultural}">
                   	<li>
-                  		<div class="media wow fadeInDown"> <a href="/details/${c.newsId}" class="media-left"> <img alt="" src="${c.display_img}"> </a>
-                    		<div class="media-body"> <a href="/details/${c.newsId}" class="catg_title">${c.title}</a> </div>
+                  		<div class="media wow fadeInDown"> <a href="/details/${v.newsId}" class="media-left"> <img alt="" src="${v.display_img}"> </a>
+                    		<div class="media-body"> <a href="/details/${v.newsId}" class="catg_title">${v.title}</a> </div>
                   		</div>
                 	</li>
                 </c:forEach>
@@ -62,21 +52,11 @@
             <div class="technology">
               <div class="single_post_content">
                 <h2><span>Du Lịch</span></h2>
-                <ul class="business_catgnav">
-                <c:forEach var="c" items="${news}">
-                  <li>
-                    <figure class="bsbig_fig"> <a href="/details/${c.newsId}" class="featured_img"> <img alt="" src="${c.display_img}"> <span class="overlay"></span> </a>
-                    	<figcaption> <a href="/details/${c.newsId}">${c.title}</a> </figcaption>
-                    	<p>${o.shortDescription}</p>
-                  	</figure>
-                  </li>
-                  </c:forEach>
-                </ul>
                 <ul class="spost_nav">
-                <c:forEach var="c" items="${news}">
+                <c:forEach var="d" items="${travel}">
                   <li>
-                  	<div class="media wow fadeInDown"> <a href="/details/${c.newsId}" class="media-left"> <img alt="" src="${c.display_img}"> </a>
-                    	<div class="media-body"> <a href="/details/${c.newsId}" class="catg_title">${c.title}</a> </div>
+                  	<div class="media wow fadeInDown"> <a href="/details/${d.newsId}" class="media-left"> <img alt="" src="${d.display_img}"> </a>
+                    	<div class="media-body"> <a href="/details/${d.newsId}" class="catg_title">${d.title}</a> </div>
                   	</div>
                 </li>
                 </c:forEach>
@@ -89,11 +69,10 @@
             <h2><span>Thời Sự</span></h2>
             <div class="single_post_content_left">
               <ul class="business_catgnav">
-              <c:forEach var="c" items="${news}">
+              <c:forEach var="t" items="${newsLeft}">
                 <li>
-                  <figure class="bsbig_fig"> <a href="/details/${c.newsId}" class="featured_img"> <img alt="" src="${c.display_img}"> <span class="overlay"></span> </a>
-                    	<figcaption> <a href="/details/${c.newsId}">${c.title}</a> </figcaption>
-                    	<p>${o.shortDescription}</p>
+                  <figure class="bsbig_fig"> <a href="/details/${t.newsId}" class="featured_img"> <img alt="" src="${t.display_img}"> <span class="overlay"></span> </a>
+                    	<figcaption> <a href="/details/${t.newsId}">${t.title}</a> </figcaption>
                   	</figure>
                 </li>
                 </c:forEach>
@@ -101,10 +80,10 @@
             </div>
             <div class="single_post_content_right">
               <ul class="spost_nav">
-              <c:forEach var="c" items="${news}">
+              <c:forEach var="t" items="${newsRight}">
                 <li>
-                  <div class="media wow fadeInDown"> <a href="/details/${c.newsId}" class="media-left"> <img alt="" src="${c.display_img}"> </a>
-                    	<div class="media-body"> <a href="/details/${c.newsId}" class="catg_title">${c.title}</a> </div>
+                  <div class="media wow fadeInDown"> <a href="/details/${t.newsId}" class="media-left"> <img alt="" src="${t.display_img}"> </a>
+                    	<div class="media-body"> <a href="/details/${t.newsId}" class="catg_title">${t.title}</a> </div>
                   	</div>
                 </li>
                 </c:forEach>
@@ -116,11 +95,10 @@
             <h2><span>Chính Trị</span></h2>
             <div class="single_post_content_left">
               <ul class="business_catgnav">
-              <c:forEach var="c" items="${news}">
+              <c:forEach var="c" items="${politicsLeft}">
                 <li>
                   <figure class="bsbig_fig"> <a href="/details/${c.newsId}" class="featured_img"> <img alt="" src="${c.display_img}"> <span class="overlay"></span> </a>
                     	<figcaption> <a href="/details/${c.newsId}">${c.title}</a> </figcaption>
-                    	<p>${o.shortDescription}</p>
                   	</figure>
                 </li>
                 </c:forEach>
@@ -128,7 +106,7 @@
             </div>
             <div class="single_post_content_right">
               <ul class="spost_nav">
-              <c:forEach var="c" items="${news}">
+              <c:forEach var="c" items="${politicsRight}">
                 <li>
                   <div class="media wow fadeInDown"> <a href="/details/${c.newsId}" class="media-left"> <img alt="" src="${c.display_img}"> </a>
                     	<div class="media-body"> <a href="/details/${c.newsId}" class="catg_title">${c.title}</a> </div>
@@ -143,11 +121,10 @@
             <h2><span>Giải Trí</span></h2>
             <div class="single_post_content_left">
               <ul class="business_catgnav">
-              <c:forEach var="c" items="${news}">
+              <c:forEach var="g" items="${entertainLeft}">
                 <li>
-                  <figure class="bsbig_fig"> <a href="/details/${c.newsId}" class="featured_img"> <img alt="" src="${c.display_img}"> <span class="overlay"></span> </a>
-                    	<figcaption> <a href="/details/${c.newsId}">${c.title}</a> </figcaption>
-                    	<p>${o.shortDescription}</p>
+                  <figure class="bsbig_fig"> <a href="/details/${g.newsId}" class="featured_img"> <img alt="" src="${g.display_img}"> <span class="overlay"></span> </a>
+                    	<figcaption> <a href="/details/${g.newsId}">${g.title}</a> </figcaption>
                   	</figure>
                 </li>
                 </c:forEach>
@@ -155,10 +132,10 @@
             </div>
             <div class="single_post_content_right">
               <ul class="spost_nav">
-              <c:forEach var="c" items="${news}">
+              <c:forEach var="g" items="${entertainRight}">
                 <li>
-                  <div class="media wow fadeInDown"> <a href="/details/${c.newsId}" class="media-left"> <img alt="" src="${c.display_img}"> </a>
-                    	<div class="media-body"> <a href="/details/${c.newsId}" class="catg_title">${c.title}</a> </div>
+                  <div class="media wow fadeInDown"> <a href="/details/${g.newsId}" class="media-left"> <img alt="" src="${g.display_img}"> </a>
+                    	<div class="media-body"> <a href="/details/${g.newsId}" class="catg_title">${g.title}</a> </div>
                   	</div>
                 </li>
                 </c:forEach>

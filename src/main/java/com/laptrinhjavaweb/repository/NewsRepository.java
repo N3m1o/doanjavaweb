@@ -17,6 +17,12 @@ public interface NewsRepository extends JpaRepository<NewsEntity, Integer>{
 	@Query(value = "select * from news n where n.cate_id = ?1", nativeQuery = true)
 	List<NewsEntity> findByCateID(Integer cateId);
 	
+	@Query(value = "select top 2 * from news n where n.cate_id = ?1 order by news_id desc", nativeQuery = true)
+	List<NewsEntity> findNewsForLeft(Integer cateId);
+	
+	@Query(value = "select top 7 * from news n where n.cate_id = ?1", nativeQuery = true)
+	List<NewsEntity> findNewsForRight(Integer cateId);
+	
 	@Query(value = "select * from news n where n.news_id = ?1", nativeQuery = true)
 	NewsEntity findOneByIdNews(Integer newsId);
 	
@@ -29,6 +35,7 @@ public interface NewsRepository extends JpaRepository<NewsEntity, Integer>{
 	@Query(value = "SELECT TOP 6 * FROM news n ORDER BY NEWID()", nativeQuery = true)
 	List<NewsEntity> findNewsRandom();
 	
-	
+	@Query(value = "SELECT TOP 3 * FROM news n WHERE n.cate_id = ?1 ORDER BY NEWID()", nativeQuery = true)
+	List<NewsEntity> relatestPost(Integer cateId);
 	
 }

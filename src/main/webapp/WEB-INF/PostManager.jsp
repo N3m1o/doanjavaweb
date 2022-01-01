@@ -80,7 +80,12 @@ img {
 							<td>${c.title}</td>
 							<td><img src="${c.display_img}"></td>
 							<td>${c.shortDescription}</td>
-							<td>${c.content}</td>
+							<td><div style="overflow: hidden;
+  											display: -webkit-box;
+  											-webkit-line-clamp: 7;
+  											-webkit-box-orient: vertical;">${c.content}
+  								</div>
+  							</td>
 							<td>
 								<a href="/edit/${c.newsId}" class="edit" data-toggle="modal"> 
 								<i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></a> 
@@ -129,17 +134,6 @@ img {
 								class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Nội dung</label>
-							<textarea name="content" class="form-control" required
-								id="content"></textarea>
-							<script type="text/javascript">
-								CKEDITOR.replace('content', {
-									width : "520px",
-									height : "500px"
-								});
-							</script>
-						</div>
-						<div class="form-group">
 							<label>Mô tả ngắn</label>
 							<textarea name="short_description" class="form-control" required></textarea>
 						</div>
@@ -150,6 +144,17 @@ img {
 									<option value = "${c.cid}">${c.cname}</option>
 									</c:forEach>
 							</select>
+						</div>
+						<div class="form-group">
+							<label>Nội dung</label>
+							<textarea name="content" class="form-control" required
+								id="content"></textarea>
+							<script type="text/javascript">
+								CKEDITOR.replace('content', {
+									width : "520px",
+									height : "500px"
+								});
+							</script>
 						</div>
 					</div>
 					<div class="modal-footer">

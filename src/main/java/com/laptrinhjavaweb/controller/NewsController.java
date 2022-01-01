@@ -55,16 +55,29 @@ public class NewsController {
 		model.addAttribute("random", newsService.findNewsRandom());
 		model.addAttribute("lastestNews", newsService.findLast());
 		model.addAttribute("news", newsService.findAll());
-		int cateId = 1;
-		model.addAttribute("cate", newsService.findById(cateId));
+		//Đổ dữ liệu vào các field trên HOME
+		//dữ liệu của thể thao
+		model.addAttribute("sportLeft", newsService.findNewsForLeft(1));
+		model.addAttribute("sportRight", newsService.findNewsForRight(1));
+		//dữ liệu của văn hóa
+		model.addAttribute("cultural", newsService.findNewsForRight(2));
+		//du lịch
+		model.addAttribute("travel", newsService.findNewsForRight(3));
+		//thời sự
+		model.addAttribute("newsLeft", newsService.findNewsForLeft(4));
+		model.addAttribute("newsRight", newsService.findNewsForRight(4));
+		//chính trị
+		model.addAttribute("politicsLeft", newsService.findNewsForLeft(5));
+		model.addAttribute("politicsRight", newsService.findNewsForRight(5));
+		//giải trí
+		model.addAttribute("entertainLeft", newsService.findNewsForLeft(6));
+		model.addAttribute("entertainRight", newsService.findNewsForRight(6));
 		return "home";
 	}
 	
 	//chi tiet bai viet
 	@RequestMapping("/details/{newsId}")
 	public String showDetailsPage(Model model, @PathVariable int newsId) {
-		//model.addAttribute("cate", categoryService.findCateName(newsId));
-		//model.addAttribute("author", userService.nameAuthorByNewsId(newsId));
 		
 		model.addAttribute("lastestNews", newsService.findLast());
 		model.addAttribute("cateList", categoryService.findAll());

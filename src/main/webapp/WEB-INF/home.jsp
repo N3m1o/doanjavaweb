@@ -41,7 +41,7 @@
           		</c:forEach>>
           </li>
           <li><a href="contact.jsp">Liên hệ</a></li>
-        </ul>
+        </ul>		
       </div>
     </nav>
   </section>
@@ -49,7 +49,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="slick_slider">
-        <c:forEach var="o" items="${lastestNews}">
+        <c:forEach var="o" items="${random}">
           <div class="single_iteam"> <a href="/details/${o.newsId}"> <img src="${o.display_img}" alt=""></a>
             <div class="slider_article">
               <h2><a class="slider_tittle" href="/details/${o.newsId}">${o.title}</a></h2>
