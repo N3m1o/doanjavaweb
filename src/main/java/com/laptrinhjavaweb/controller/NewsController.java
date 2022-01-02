@@ -75,6 +75,15 @@ public class NewsController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/contact")
+	public String conntactWithUs(Model model) {
+		List<CateEntity> cateEntitiesList = categoryService.findAll();
+		model.addAttribute("cateList", cateEntitiesList);
+		model.addAttribute("random", newsService.findNewsRandom());
+		model.addAttribute("lastestNews", newsService.findLast());
+		return "contact";
+	}
+	
 	//chi tiet bai viet
 	@RequestMapping("/details/{newsId}")
 	public String showDetailsPage(Model model, @PathVariable int newsId) {

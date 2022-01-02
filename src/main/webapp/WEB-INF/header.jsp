@@ -13,7 +13,14 @@ UserEntity userEntity = (UserEntity)object;
 					<ul class="top_nav">
 						<li><a href="/home">Home</a></li>
 						<li><a href="#">About</a></li>
-						<li><a href="pages/contact.html">Contact</a></li>
+						<li><a href="/contact">Contact</a></li>
+						<li><div class="box">
+  							<div class="container-1" style="width: 300px; vertical-align: middle; white-space: nowrap; position: relative;">
+      						<span class="icon"><i class="fa fa-search"></i></span>
+      						<input type="search" id="search" placeholder="Search..." />
+  							</div>
+							</div>
+						</li>
 						<%
 						if (userEntity != null) {
 						%>
@@ -25,7 +32,7 @@ UserEntity userEntity = (UserEntity)object;
 								<li style="display: block"><a style="width: 100%" href="#"><%=userEntity.getUsername()%></a></li>
 								<li style="display: block"><a style="width: 100%"  href="/author">Bài Viết của Tôi</a></li>
 								<li style="display: block"><a style="width: 100%" href="#">Tài Khoản của Tôi</a></li>
-								<li style="display: block"><a style="width: 100%" href="#">Đăng Xuất</a></li>
+								<li style="display: block"><a style="width: 100%" href="/logout">Đăng Xuất</a></li>
 							</ul>
 						</li>
 						<%

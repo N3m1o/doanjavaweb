@@ -40,7 +40,7 @@
           			<a href="/category/${c.cid}">${c.cname}</a>
           		</c:forEach>>
           </li>
-          <li><a href="contact.jsp">Liên hệ</a></li>
+          <li><a href="/contact">Liên hệ</a></li>
         </ul>		
       </div>
     </nav>

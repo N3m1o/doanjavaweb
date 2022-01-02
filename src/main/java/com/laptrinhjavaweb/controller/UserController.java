@@ -1,7 +1,5 @@
 package com.laptrinhjavaweb.controller;
 
-import java.util.Enumeration;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +42,17 @@ public class UserController {
 		}
 	}
 	
-	// sign up
-	@PostMapping("/sign")
-	public String sign(UserEntity userEntity) {
-		if (userEntity.getFullname() != null && userEntity.getUsername() != null && userEntity.getPassword() != null) {
+	// Thuc hien Dang xuat
+	@RequestMapping(value = "/logout")
+	public String logOut(HttpSession httpSession) {
+		httpSession.removeAttribute("userEntity");
+		return "redirect:/home";
+	}
+	
+	// Thuc hien Dang ky
+	@RequestMapping(value = "/signup",params = {"username","password"}, method = RequestMethod.POST)
+	public String signUp(UserEntity userEntity) {
+		if (userEntity.getUsername() != null && userEntity.getPassword() != null) {
 			try {
 				if (userService.findByUser(userEntity) != null) {
 					return "username da ton tai";
