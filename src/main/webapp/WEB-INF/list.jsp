@@ -26,25 +26,6 @@
 	<div class="container">
 
 		<jsp:include page="header.jsp"></jsp:include>
-
-		<section id="navArea">
-    <nav class="navbar navbar-inverse" role="navigation">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav main_nav">
-          <li class="active"><a href="/home"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-          <li>
-          		<c:forEach var="c" items="${cateList}">
-          		<a href="/category/${c.cid}" >${c.cname}</a>
-          		</c:forEach>
-          </li>
-          <li><a href="contact.jsp">Liên hệ</a></li>
-        </ul>
-      </div>
-    </nav>
-  </section>
 		
 		<section id="contentSection">
 			<div class="row">
@@ -66,20 +47,9 @@
 								<ul class="sociallink_nav">
 									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fa fa-google"></i></a></li>
+									<li><a href="https://www.youtube.com/c/vtv24" target="_blank"><i class="fa fa-youtube"></i></a></li>
 									<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-								</ul>
-							</div>
-							
-							<div class="related_post">
-								<h2>
-									
-								</h2>
-								<ul class="spost_nav wow fadeInDown animated">
-									<li></li>
-									<li></li>
-									<li></li>
 								</ul>
 							</div>
 						</div>

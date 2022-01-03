@@ -181,6 +181,7 @@ public class NewsController {
 		model.addAttribute("cateList", categoryService.findAll());
 		model.addAttribute("random", newsService.findNewsRandom());
 		model.addAttribute("cate", newsService.findById(cateId));
+		model.addAttribute("tag", cateId);
 		return "list";
 	}
 

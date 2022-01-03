@@ -27,24 +27,7 @@
 
   <jsp:include page="header.jsp"></jsp:include>
 
-  <section id="navArea">
-    <nav class="navbar navbar-inverse" role="navigation">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav main_nav">
-          <li class="active"><a href="/home"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-          <li>
-          		<c:forEach var="c" items="${cateList}">
-          			<a href="#">${c.cname}</a>
-          		</c:forEach>>
-          </li>
-          <li><a href="contact.jsp">Liên hệ</a></li>
-        </ul>
-      </div>
-    </nav>
-  </section>
+  
   <section id="sliderSection">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-8">

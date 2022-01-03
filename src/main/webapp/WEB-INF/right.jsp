@@ -4,7 +4,7 @@
 <div class="col-lg-4 col-md-4 col-sm-4">
         <aside class="right_content">
           <div class="single_sidebar">
-            <h2><span>Popular Post</span></h2>
+            <h2><span>Bài Viết Nổi Bật</span></h2>
             <ul class="spost_nav">
             <c:forEach var="r" items="${random}">
               <li>
@@ -30,7 +30,7 @@
               </div>
               <div role="tabpanel" class="tab-pane" id="video">
                 <div class="vide_area">
-              		<iframe width="100%" height="250" src="https://www.youtube.com/embed/BSG5iHK9Scw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              		<iframe width="100%" height="250" src="https://www.youtube.com/embed/nIE-CycFToI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
               </div>
             </div>
@@ -41,16 +41,16 @@
             <ul>
               <li><a href="#">FaceBook</a></li>
               <li><a href="#">Twitter</a></li>
-              <li><a href="#">Youtube</a></li>
-              <li><a href="#">Login</a></li>
+              <li><a href="https://www.youtube.com/c/vtv24" target="_blank">Youtube</a></li>
+              <li><a href="/login">Login</a></li>
             </ul>
           </div>
           					<div class="social_link">
 								<ul class="sociallink_nav">
 									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fa fa-google"></i></a></li>
+									<li><a href="https://www.youtube.com/c/vtv24" target="_blank"><i class="fa fa-youtube"></i></a></li>
 									<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
 								</ul>
 							</div>
