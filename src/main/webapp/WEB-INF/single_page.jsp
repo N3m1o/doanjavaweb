@@ -42,6 +42,7 @@
 							<div class="post_commentbox">
 								<a href="#"><i class="fa fa-user"></i>${person.fullname}</a> 
 								<a href="/category/${cate.cid}"> <i class="fa fa-tags"></i>${cate.cname}</a>
+								<a><i class="fa fa-calendar"></i>${details.date_submitted}</a>
 							</div>
 							<div class="single_page_content">
 								<img class="img-center" src="${details.display_img}" alt="">

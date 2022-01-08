@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -112,6 +113,9 @@ public class NewsController {
 		newsEntity.setTitle(title);
 		newsEntity.setUserId(userEntity);
 		newsEntity.setCateId(cateEntity);
+		java.util.Date utilDate = new java.util.Date();
+	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+	    newsEntity.setDate_submitted(sqlDate);
 		newsService.save(newsEntity);
 		return "redirect:/author";
 	}

@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,6 +45,14 @@ public class NewsEntity implements Serializable{
 	@Column(name = "display_img", columnDefinition = "nvarchar(500)")
 	private String display_img;
 	
+	@Column(name = "date_submitted")
+	private Date date_submitted; 
+	
+	
+	
+
+
+
 	public NewsEntity() {
 	}
 
@@ -132,7 +141,15 @@ public class NewsEntity implements Serializable{
 	}
 
 
+	public Date getDate_submitted() {
+		return date_submitted;
+	}
 
+
+
+	public void setDate_submitted(Date date_submitted) {
+		this.date_submitted = date_submitted;
+	}
 	@Override
 	public String toString() {
 		return "NewsEntity [newsId=" + newsId + ", title=" + title + ", shortDescription=" + shortDescription

@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="col-lg-4 col-md-4 col-sm-4">
+<div class="col-lg-4 col-md-4 col-sm-4" style="float:right">
         <aside class="right_content">
           <div class="single_sidebar">
             <h2><span>Bài Viết Nổi Bật</span></h2>

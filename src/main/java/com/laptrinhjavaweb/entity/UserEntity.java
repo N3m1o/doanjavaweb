@@ -1,8 +1,7 @@
 package com.laptrinhjavaweb.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +28,7 @@ public class UserEntity implements Serializable{
 	private String fullname;
 	
 	@Column(name = "date_of_birth")
-	private LocalDate dateOfBirth;
+	private Date dateOfBirth;
 	
 	@Column(nullable = false)
 	private int gender;
@@ -48,7 +47,7 @@ public class UserEntity implements Serializable{
 	
 	
 
-	public UserEntity(int userID, String username, String password, String fullname, LocalDate dateOfBirth, int gender,
+	public UserEntity(int userID, String username, String password, String fullname, Date dateOfBirth, int gender,
 			int isAuthor, int isAdmin) {
 		super();
 		this.userID = userID;
@@ -95,11 +94,11 @@ public class UserEntity implements Serializable{
 		this.fullname = fullname;
 	}
 
-	public LocalDate getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(LocalDate dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
