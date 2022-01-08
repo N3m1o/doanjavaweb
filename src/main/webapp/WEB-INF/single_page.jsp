@@ -1,5 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.laptrinhjavaweb.entity.UserEntity"%>
+<%
+Object object = session.getAttribute("userEntity");
+UserEntity userEntity = (UserEntity)object;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,13 +60,55 @@
 							</div>
 							<div class="social_link">
 								<ul class="sociallink_nav">
-									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:8089/details/${details.newsId}" target="_blank"><i class="fa fa-facebook"></i></a></li>
 									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-google"></i></a></li>
+									<li><a href="https://plus.google.com/share?url=http://localhost:8089/details/${details.newsId}"><i class="fa fa-google"></i></a></li>
 									<li><a href="https://www.youtube.com/c/vtv24" target="_blank"><i class="fa fa-youtube"></i></a></li>
 									<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
 								</ul>
 							</div>
+							<%
+							if (object != null) {
+							%>
+					<form action="/details/${details.newsId}" method="post" style="margin-bottom:10px">
+						<div>
+						<h4>Bình luận     <i class="fa fa-pencil"></i></h4>
+							<textarea name="main" class="form-control" required id="main"></textarea>
+							<script type="text/javascript">
+								CKEDITOR.replace('main', {
+									//uiColor: '#252525',
+									editorplaceholder: 'Viết bình luận...',
+									toolbar: [
+							               [ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
+							               [ 'FontSize', 'TextColor', 'BGColor' ],
+							               [ 'Cut', 'Copy', 'Paste', 'Undo', 'Redo' ],
+							               [ 'Smiley']
+							           ]
+								});
+							</script>
+						</div>
+						<button class="btn btn-success btn-block" type="submit" style="background-color:#d083cf;">Bình luận</button>
+					</form>
+							<%
+							} else {
+							%>
+							<p>Quý độc giả vui lòng <a href="/login" style="color:rgb(255, 0, 0); font-size:15px; background-color:#ffff00;"><strong>Đăng nhập</strong></a> để mở khóa chức năng Bình luận!</p>
+							<%
+							}
+							%>	
+							
+					<div>
+					<c:forEach var="c" items="${comment}">
+						<li>
+                  		<div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" style="height:40px; weight:40px" src="${c.userId.user_img}"> </a>
+                    		<div class="media-body"> <a href="#" class="catg_title" style="font-size:20px;">${c.userId.fullname} </a> </div>
+                  		</div>
+                  		<a>${c.commentMain}</a>
+                		</li>
+					</c:forEach>
+					</div>
+					
+					
 							<div class="related_post">
 								<h2>
 									Bài viết liên quan
@@ -87,28 +134,6 @@
 							</div>
 						</div>
 					</div>
-					
-					
-					<form style="margin-bottom:10px">
-						<div>
-						<h4>Bình luận     <i class="fa fa-pencil"></i></h4>
-							<textarea name="comment" class="form-control" required id="comment"></textarea>
-							<script type="text/javascript">
-								CKEDITOR.replace('comment', {
-									//uiColor: '#252525',
-									editorplaceholder: 'Viết bình luận...',
-									toolbar: [
-							               [ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
-							               [ 'FontSize', 'TextColor', 'BGColor' ],
-							               [ 'Cut', 'Copy', 'Paste', 'Undo', 'Redo' ],
-							               [ 'Smiley']
-							           ]
-								});
-							</script>
-						</div>
-						<button class="btn btn-success btn-block" type="submit" style="background-color:#d083cf;">Bình luận</button>
-					</form>
-					
 				</div>
 				
 				<jsp:include page="lastest.jsp"></jsp:include>

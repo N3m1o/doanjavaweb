@@ -42,6 +42,9 @@ public class UserEntity implements Serializable{
 	@Column(columnDefinition = "nvarchar(500)")
 	private String short_description;
 	
+	@Column(name = "user_img", columnDefinition = "nvarchar(500) default 'https://pdp.edu.vn/wp-content/uploads/2021/05/hinh-anh-mat-cuoi-dep-cute-cam-xuc.jpg'")
+	private String user_img;
+	
 	public UserEntity() {
 	}
 	
@@ -126,11 +129,27 @@ public class UserEntity implements Serializable{
 		this.isAdmin = isAdmin;
 	}
 
+	public String getShort_description() {
+		return short_description;
+	}
+	
+	public void setShort_description(String short_description) {
+		this.short_description = short_description;
+	}
+
+	public String getUser_img() {
+		return user_img;
+	}
+	
+	public void setUser_img(String user_img) {
+		this.user_img = user_img;
+	}
+
 	@Override
 	public String toString() {
-		return "AccountEntity [userID=" + userID + ", username=" + username + ", password=" + password + ", fullname="
+		return "UserEntity [userID=" + userID + ", username=" + username + ", password=" + password + ", fullname="
 				+ fullname + ", dateOfBirth=" + dateOfBirth + ", gender=" + gender + ", isAuthor=" + isAuthor
-				+ ", isAdmin=" + isAdmin + "]";
+				+ ", isAdmin=" + isAdmin + ", short_description=" + short_description + ", user_img=" + user_img + "]";
 	}
 
 }

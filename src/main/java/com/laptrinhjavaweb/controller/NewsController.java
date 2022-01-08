@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.laptrinhjavaweb.entity.CateEntity;
+import com.laptrinhjavaweb.entity.CommentEntity;
 import com.laptrinhjavaweb.entity.NewsEntity;
 import com.laptrinhjavaweb.entity.UserEntity;
 import com.laptrinhjavaweb.service.CategoryService;
+import com.laptrinhjavaweb.service.CommentService;
 import com.laptrinhjavaweb.service.NewsService;
 import com.laptrinhjavaweb.service.UserService;
 
@@ -34,6 +36,9 @@ public class NewsController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CommentService commentService;
 	
 	// hiển thị bài viết của nhà báo
 	@RequestMapping(value = "/author")
@@ -100,7 +105,9 @@ public class NewsController {
 	//chi tiet bai viet
 	@RequestMapping("/details/{newsId}")
 	public String showDetailsPage(Model model, @PathVariable int newsId) {
-		
+		CommentEntity commentEntity = new CommentEntity();
+		//model.addAttribute("authorOfComment", userService.findByUserId(commentEntity.getUserId()));
+		model.addAttribute("comment", commentService.findCommentByNewsId(newsId));
 		model.addAttribute("lastestNews", newsService.findLast());
 		model.addAttribute("cateList", categoryService.findAll());
 		model.addAttribute("details", newsService.findByIdNews(newsId));
@@ -108,6 +115,23 @@ public class NewsController {
 		model.addAttribute("cate", categoryService.findCateName(newsId));
 		model.addAttribute("person", userService.findNameAuthorByNewsId(newsId));
 		return "single_page";
+	}
+	
+	@RequestMapping(value = "/details/{newsId}", params = {"main"}, method = RequestMethod.POST)
+	public String createComment(@PathVariable int newsId, @RequestParam("main")String main, HttpSession httpSession) {
+		NewsEntity newsEntity = newsService.findByIdNews(newsId);
+		Object obj = httpSession.getAttribute("userEntity");
+		UserEntity userEntity = (UserEntity)obj;
+		CommentEntity commentEntity = new CommentEntity();
+		commentEntity.setCommentMain(main);
+		commentEntity.setUserId(userEntity);
+		commentEntity.setNewsId(newsEntity);
+		java.util.Date utilDate = new java.util.Date();
+	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+	    commentEntity.setCommentDate(sqlDate);
+	    commentService.save(commentEntity);
+	    
+		return "redirect:/details/{newsId}";
 	}
 	
 	@RequestMapping(value = "/author", params = {"title","display_image","content","short_description","category"}, method = RequestMethod.POST)
@@ -159,16 +183,6 @@ public class NewsController {
 		newsEntity.setNewsId(newsId);
 		newsService.save(newsEntity);
 		return "redirect:/author";
-	}
-	
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@Validated NewsEntity newsEntity, BindingResult result, RedirectAttributes redirect) {
-		if (result.hasErrors()) {
-			return "form";
-		}
-		newsService.save(newsEntity);
-		redirect.addFlashAttribute("success", "Luu bai thanh cong");
-		return "redirect:/PostManager";
 	}
 	
 	// đã hoạt động

@@ -18,6 +18,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 	@Query(value = "SELECT * FROM users u JOIN news n ON n.user_id = u.user_id WHERE n.news_id = ?1", nativeQuery = true)
 	UserEntity findNameAuthorByNewsId(int newsId);
 	
-	@Query(value = "select * from users u where u.userID = ?1", nativeQuery = true)
+	@Query(value = "select * from users u where u.user_id = ?1", nativeQuery = true)
 	UserEntity findByUserId(Integer userId);
 }
