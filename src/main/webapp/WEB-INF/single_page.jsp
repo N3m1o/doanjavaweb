@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery.fancybox.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/theme.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
+<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 
 </head>
 <body>
@@ -69,11 +70,15 @@
 								<c:forEach var="r" items="${random}">
 									<li>
 										<div class="media">
-											<a class="media-left" href="/details/${r.newsId}"> 
+											<a class="media-left" href="/details/${r.newsId}" title="${r.title}"> 
 												<img src="${r.display_img}">
 											</a>
 											<div class="media-body">
-												<a class="catg_title" href="/details/${r.newsId}">${r.title}</a>
+												<div style="overflow: hidden;
+  															display: -webkit-box;
+  															-webkit-line-clamp: 3;
+  															-webkit-box-orient: vertical;">
+  												<a class="catg_title" href="/details/${r.newsId}" title="${r.title}">${r.title}</a></div>
 											</div>
 										</div>
 									</li>
@@ -82,6 +87,28 @@
 							</div>
 						</div>
 					</div>
+					
+					
+					<form style="margin-bottom:10px">
+						<div>
+						<h4>Bình luận     <i class="fa fa-pencil"></i></h4>
+							<textarea name="comment" class="form-control" required id="comment"></textarea>
+							<script type="text/javascript">
+								CKEDITOR.replace('comment', {
+									//uiColor: '#252525',
+									editorplaceholder: 'Viết bình luận...',
+									toolbar: [
+							               [ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
+							               [ 'FontSize', 'TextColor', 'BGColor' ],
+							               [ 'Cut', 'Copy', 'Paste', 'Undo', 'Redo' ],
+							               [ 'Smiley']
+							           ]
+								});
+							</script>
+						</div>
+						<button class="btn btn-success btn-block" type="submit" style="background-color:#d083cf;">Bình luận</button>
+					</form>
+					
 				</div>
 				
 				<jsp:include page="lastest.jsp"></jsp:include>
@@ -94,20 +121,14 @@
 		<jsp:include page="footer.jsp"></jsp:include>
 
 	</div>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/wow.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/slick.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.li-scroller.1.0.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.newsTicker.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.pack.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/wow.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/slick.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.li-scroller.1.0.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.newsTicker.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.pack.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 </body>
 </html>

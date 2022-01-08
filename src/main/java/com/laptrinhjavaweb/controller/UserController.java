@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,13 +47,13 @@ public class UserController {
 		httpSession.removeAttribute("userEntity");
 		return "redirect:/home";
 	}
-	
+/**	
 	// Thuc hien Dang ky
 	@RequestMapping(value = "/signup",params = {"username","password"}, method = RequestMethod.POST)
 	public String signUp(UserEntity userEntity) {
 		if (userEntity.getUsername() != null && userEntity.getPassword() != null) {
 			try {
-				if (userService.findByUser(userEntity) != null) {
+				if (userService.findByUserId(userEntity) != null) {
 					return "username da ton tai";
 				}
 				else {
@@ -68,5 +67,5 @@ public class UserController {
 			return "thiếu thông tin";
 		}
 	}
-	
+**/	
 }

@@ -45,12 +45,12 @@
                 <c:forEach var="v" items="${cultural}">
                   	<li>
                   		<div class="media wow fadeInDown"> <a href="/details/${v.newsId}" class="media-left"> <img alt="" src="${v.display_img}"> </a>
-                    		<div class="media-body"> <a href="/details/${v.newsId}" class="catg_title">${v.title}</a> </div>
+                    		<div class="media-body"> <a href="/details/${v.newsId}" class="catg_title" style="font-size:20px;">${v.title}</a> </div>
                   		</div>
                   		<p style="overflow: hidden;
   											display: -webkit-box;
   											-webkit-line-clamp: 2;
-  											-webkit-box-orient: vertical;">${v.shortDescription}
+  											-webkit-box-orient: vertical;"><a href="/details/${v.newsId}" title="${v.shortDescription}">${v.shortDescription}</a>
   						</p>
                 	</li>
                 </c:forEach>
@@ -65,12 +65,12 @@
                 <c:forEach var="d" items="${travel}">
                   <li>
                   	<div class="media wow fadeInDown"> <a href="/details/${d.newsId}" class="media-left"> <img alt="" src="${d.display_img}"> </a>
-                    	<div class="media-body"> <a href="/details/${d.newsId}" class="catg_title">${d.title}</a> </div>
+                    	<div class="media-body"> <a href="/details/${d.newsId}" class="catg_title" style="font-size:20px;">${d.title}</a> </div>
                   	</div>
                   	<p style="overflow: hidden;
   											display: -webkit-box;
   											-webkit-line-clamp: 2;
-  											-webkit-box-orient: vertical;">${d.shortDescription}
+  											-webkit-box-orient: vertical;"><a href="/details/${d.newsId}" title="${d.shortDescription}">${d.shortDescription}</a>
   					</p>
                   </li>
                 </c:forEach>

@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 
-	public UserEntity findByUser(UserEntity userEntity) {
-		return userRepository.findByName(userEntity.getUsername());
+	public UserEntity findByName(String username) {
+		return userRepository.findByName(username);
 	}
 
 
@@ -45,6 +45,16 @@ public class UserServiceImpl implements UserService{
 	public UserEntity getUserByUsername(String username) {
 		// TODO Auto-generated method stub
 		return userRepository.findByName(username);
+	}
+
+
+	@Override
+	public UserEntity findByUserId(int userId) {
+		try {
+			return userRepository.findByUserId(userId);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 }

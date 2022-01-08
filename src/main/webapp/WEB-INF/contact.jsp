@@ -1,5 +1,10 @@
+<%@page import="com.laptrinhjavaweb.entity.UserEntity"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+Object object = session.getAttribute("userEntity");
+UserEntity userEntity = (UserEntity)object;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,13 +59,24 @@
 						<div class="contact_area">
 							<h2>Liên lạc với chúng tôi</h2>
 							<p>Quý độc giả có bất kì thắc mắc hoặc phản hồi xin gửi tin nhắn về với chúng tôi theo form bên dưới</p>
+							<%
+							if (object != null) {
+							%>
+							
 							<form action="#" class="contact_form">
-								<input class="form-control" type="text" placeholder="Name*">
+								<input class="form-control" value="${userEntity.username}" type="text" placeholder="Name*" readonly>
 								<input class="form-control" type="email" placeholder="Email*">
 								<textarea class="form-control" cols="30" rows="10"
 									placeholder="Message*"></textarea>
 								<input type="submit" value="Gửi tin nhắn">
 							</form>
+							<%
+							} else {
+							%>
+							<p>Quý độc giả vui lòng <a href="/login" style="color:rgb(255, 0, 0); font-size:15px; background-color:#ffff00;"><strong>Đăng nhập</strong></a> để mở khóa chức năng này!</p>
+							<%
+							}
+							%>
 						</div>
 					</div>
 				</div>

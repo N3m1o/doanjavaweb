@@ -1,6 +1,5 @@
 package com.laptrinhjavaweb.controller;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -77,12 +76,25 @@ public class NewsController {
 	}
 	
 	@RequestMapping(value = "/contact")
-	public String conntactWithUs(Model model) {
-		List<CateEntity> cateEntitiesList = categoryService.findAll();
-		model.addAttribute("cateList", cateEntitiesList);
-		model.addAttribute("random", newsService.findNewsRandom());
-		model.addAttribute("lastestNews", newsService.findLast());
-		return "contact";
+	public String conntactWithUs(Model model, HttpSession httpSession) {
+		Object obj = httpSession.getAttribute("userEntity");
+		if (obj!=null)
+		{
+			UserEntity userEntity = (UserEntity)obj;
+			int userId = userEntity.getUserID();
+			model.addAttribute("user", userService.findByUserId(userId));
+			List<CateEntity> cateEntitiesList = categoryService.findAll();
+			model.addAttribute("cateList", cateEntitiesList);
+			model.addAttribute("random", newsService.findNewsRandom());
+			model.addAttribute("lastestNews", newsService.findLast());
+			return "contact";
+		} else {
+			List<CateEntity> cateEntitiesList = categoryService.findAll();
+			model.addAttribute("cateList", cateEntitiesList);
+			model.addAttribute("random", newsService.findNewsRandom());
+			model.addAttribute("lastestNews", newsService.findLast());
+			return "contact";
+		}
 	}
 	
 	//chi tiet bai viet

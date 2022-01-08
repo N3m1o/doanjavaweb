@@ -41,8 +41,7 @@ img {
 					<form action="/edit/${news.newsId}" method="post">
 						<div class="modal-header">
 							<h4 class="modal-title">Sửa bài viết</h4>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body">
 							<div class="form-group">

@@ -142,8 +142,8 @@ img {
 								id="content"></textarea>
 							<script type="text/javascript">
 								CKEDITOR.replace('content', {
-									width : "520px",
-									height : "500px"
+									//width : "520px",
+									height : "550px"
 								});
 							</script>
 						</div>
