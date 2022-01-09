@@ -76,7 +76,6 @@ UserEntity userEntity = (UserEntity)object;
 							<textarea name="main" class="form-control" required id="main"></textarea>
 							<script type="text/javascript">
 								CKEDITOR.replace('main', {
-									//uiColor: '#252525',
 									editorplaceholder: 'Viết bình luận...',
 									toolbar: [
 							               [ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
@@ -99,8 +98,8 @@ UserEntity userEntity = (UserEntity)object;
 							
 					<div>
 					<c:forEach var="c" items="${comment}">
-						<li>
-                  		<div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" style="height:40px; weight:40px" src="${c.userId.user_img}"> </a>
+						<li style="list-style: none;">
+                  		<div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" style="height:40px; width:40px;border-radius:50px;" src="${c.userId.user_img}"> </a>
                     		<div class="media-body"> <a href="#" class="catg_title" style="font-size:20px;">${c.userId.fullname} </a> </div>
                   		</div>
                   		<a>${c.commentMain}</a>
