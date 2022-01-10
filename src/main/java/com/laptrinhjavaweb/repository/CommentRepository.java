@@ -6,10 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.laptrinhjavaweb.entity.CommentEntity;
-import com.laptrinhjavaweb.entity.NewsEntity;
 
 public interface CommentRepository extends JpaRepository<CommentEntity, Integer>{
 	
-	@Query(value = "SELECT * FROM dbo.comment c WHERE c.news_id = ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM dbo.comment c WHERE c.news_id = ?1 ORDER BY c.comment_date DESC", nativeQuery = true)
 	List<CommentEntity> findCommentByNewsId(Integer newsId);
 }

@@ -33,7 +33,7 @@ UserEntity userEntity = (UserEntity)object;
 	
 		<jsp:include page="header.jsp"></jsp:include>
 		
-		<section id="sliderSection">
+<!--		<section id="sliderSection">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="slick_slider">
@@ -51,7 +51,8 @@ UserEntity userEntity = (UserEntity)object;
       <jsp:include page="lastest.jsp"></jsp:include>
       
     </div>
-  </section>
+  </section> -->
+  
 		<section id="contentSection">
 			<div class="row">
 				<div class="col-lg-8 col-md-8 col-sm-8">
@@ -80,6 +81,8 @@ UserEntity userEntity = (UserEntity)object;
 						</div>
 					</div>
 				</div>
+				
+					<jsp:include page="lastest.jsp"></jsp:include>
 				
 					<jsp:include page="right.jsp"></jsp:include>
 				

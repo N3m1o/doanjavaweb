@@ -72,11 +72,12 @@ UserEntity userEntity = (UserEntity)object;
 							%>
 					<form action="/details/${details.newsId}" method="post" style="margin-bottom:10px">
 						<div>
+						<h1 style="margin-bottom:10px;">Ý kiến bạn đọc</h1>
 						<h4>Bình luận     <i class="fa fa-pencil"></i></h4>
 							<textarea name="main" class="form-control" required id="main"></textarea>
 							<script type="text/javascript">
 								CKEDITOR.replace('main', {
-									editorplaceholder: 'Viết bình luận...',
+									editorplaceholder: 'Quý độc giả vui lòng viết Tiếng Việt có dấu. Mọi bình luận mang tính chất xúc phạm, đe dọa, tục tĩu đều sẽ bị xóa!',
 									toolbar: [
 							               [ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
 							               [ 'FontSize', 'TextColor', 'BGColor' ],
@@ -91,18 +92,24 @@ UserEntity userEntity = (UserEntity)object;
 							<%
 							} else {
 							%>
-							<p>Quý độc giả vui lòng <a href="/login" style="color:rgb(255, 0, 0); font-size:15px; background-color:#ffff00;"><strong>Đăng nhập</strong></a> để mở khóa chức năng Bình luận!</p>
+							<h1 style="margin-bottom:10px;">Ý kiến bạn đọc</h1>
+							<p>Quý độc giả vui lòng <a href="/login" style="color:rgb(255, 0, 0); font-size:15px; background-color:#ffff00;"><strong>Đăng nhập</strong></a> để tham gia Bình luận!</p>
 							<%
 							}
 							%>	
 							
-					<div>
+					<div style="border-style: solid;
+    							padding: 30px;
+    							border-color: #d083cf;
+    							border-radius: 20px;">
 					<c:forEach var="c" items="${comment}">
 						<li style="list-style: none;">
                   		<div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" style="height:40px; width:40px;border-radius:50px;" src="${c.userId.user_img}"> </a>
-                    		<div class="media-body"> <a href="#" class="catg_title" style="font-size:20px;">${c.userId.fullname} </a> </div>
+                    		<div class="media-body"> <a href="#" class="catg_title" style="font-size:20px; font-weight:bold;">${c.userId.fullname} </a> </div>
                   		</div>
                   		<a>${c.commentMain}</a>
+                  		<a style="font-size:12px;"><i class="fa fa-clock-o"></i>         ${c.commentDate}</a>
+                  		<br><hr>
                 		</li>
 					</c:forEach>
 					</div>
