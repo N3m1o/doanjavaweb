@@ -55,13 +55,24 @@ img {
 							<div class="form-group">
 								<label>Ảnh đại diện</label> <input value="${user.user_img}"
 									name="user_img" type="text" class="form-control" required>
-								<img src="${user.user_img}">
+								<center><img src="${user.user_img}"></center>
 							</div>
 
 							<div class="form-group">
-								<label>Giới tính</label> <input value="${user.gender}"
-									name="gender" type="text" class="form-control" required>
-							</div>
+                                <label>Giới tính</label> 
+                                <div>
+                                <c:choose>
+                                    <c:when test="${user.gender==1}">
+                                        <label style="width:33.33%;"><input type="radio" name="gender" value="1" checked> Nam </label>
+                                        <label style="width:33.33%;"><input type="radio" name="gender" value="0" > Nữ </label>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <label style="width:33.33%;"><input type="radio" name="gender" value="1" > Nam </label>
+                                        <label style="width:33.33%;"><input type="radio" name="gender" value="0" checked > Nữ </label>
+                                    </c:otherwise> 
+                                </c:choose>
+                                </div>
+                            </div>
 						
 							<div class="form-group">
 								<label>Tiểu sử</label> <input value="${user.short_description}"

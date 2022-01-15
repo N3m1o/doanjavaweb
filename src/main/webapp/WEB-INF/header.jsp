@@ -15,13 +15,15 @@ UserEntity userEntity = (UserEntity)object;
 						<li><a href="/home">Home</a></li>
 						<li><a href="#">About</a></li>
 						<li><a href="/contact">Contact</a></li>
-						<li><div class="box">
-  							<div class="container-1" style="width: 300px; vertical-align: middle; white-space: nowrap; position: relative;">
-      						<span class="icon"><i class="fa fa-search"></i></span>
-      						<input type="search" id="search" placeholder="Search..." />
-  							</div>
-							</div>
-						</li>
+						<li>
+                              <div class="container-1" style="width: 300px; vertical-align: middle; white-space: nowrap; position: relative;">
+                              <form action="/search">
+                              <input style="width: 90%;" name="searchString" value="" id="search" placeholder="Search..." />
+                              <button type="submit"><i class="fa fa-search"></i></button>
+                              </form>
+                              </div>
+
+                        </li>
 						<%
 						if (userEntity != null) {
 						%>
@@ -31,7 +33,13 @@ UserEntity userEntity = (UserEntity)object;
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li style="display: block"><a style="width: 100%" href="#"><%=userEntity.getUsername()%></a></li>
-								<li style="display: block"><a style="width: 100%"  href="/author">Bài Viết của Tôi</a></li>
+								<%
+                                    if (userEntity.getIsAuthor()==1){
+                                %>
+                                <li style="display: block"><a style="width: 100%"  href="/author">Bài Viết của Tôi</a></li>
+                                <%
+                                    }
+                                %>
 								<li style="display: block"><a style="width: 100%" href="/user/edit/${userEntity.userID}">Tài Khoản của Tôi</a></li>
 								<li style="display: block"><a style="width: 100%" href="/logout">Đăng Xuất</a></li>
 							</ul>

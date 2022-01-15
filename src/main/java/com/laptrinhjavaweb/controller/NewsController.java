@@ -194,14 +194,17 @@ public class NewsController {
 		return "redirect:/author";
 	}
 	
-	@RequestMapping("/search")
-	public String search(@RequestParam("s") String s, Model model) {
-		if (s.equals("")) {
-			return "redirect:/news";
-		}
-		model.addAttribute("news",newsService.search(s));
-		return "list";
-	}
+	@RequestMapping(value="/search",params= {"searchString"})
+    public String search(@RequestParam("searchString") String s, Model model) {
+        if (s.equals("")) {
+            return "redirect:/home";
+        }
+        model.addAttribute("lastestNews", newsService.findLast());
+        model.addAttribute("cateList", categoryService.findAll());
+        model.addAttribute("random", newsService.findNewsRandom());
+        model.addAttribute("news",newsService.search(s));
+        return "search";
+    }
 	
 	//test
 	@RequestMapping("/category/{cateId}")

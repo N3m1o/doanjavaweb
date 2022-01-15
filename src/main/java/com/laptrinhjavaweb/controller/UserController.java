@@ -71,26 +71,29 @@ public class UserController {
 **/	
 	
 	@RequestMapping("/user/edit/{userId}")
-	public String showEditNewsPage(@PathVariable int userId, Model model) {
-		model.addAttribute("user", userService.findByUserId(userId));
-		return "account";
-	}
-	
-	@RequestMapping(value = "/user/edit/{userId}", params = {"id","username","fullname","user_img","gender","short_description"}, method = RequestMethod.POST)
-	public String editUser(@RequestParam("id")int userId,@RequestParam("username")String username,@RequestParam("fullname")String fullname,@RequestParam("user_img")String user_img,
-			@RequestParam("gender")int gender,@RequestParam("short_description")String short_description
-			,HttpSession httpSession) {
-		Object obj = httpSession.getAttribute("userEntity");
-		UserEntity userEntity = (UserEntity)obj;
-		UserEntity userEntity2 = new UserEntity();
-		userEntity2.setUserID(userId);
-		userEntity.setUsername(username);
-		userEntity2.setFullname(username);
-		userEntity2.setFullname(fullname);
-		userEntity2.setUser_img(user_img);
-		userEntity2.setGender(gender);
-		userEntity2.setShort_description(short_description);
-		userService.save(userEntity2);
-		return "redirect:/user/edit/{userId}";
-	}
+    public String showEditNewsPage(@PathVariable int userId, Model model, HttpSession httpSession) {
+        Object obj = httpSession.getAttribute("userEntity");
+        if (obj!=null) {
+            model.addAttribute("user", userService.findByUserId(userId));
+            return "account";
+        } else {
+            return "redirect:/home";
+        }
+
+    }
+
+    @RequestMapping(value = "/user/edit/{userId}", params = {"username","fullname","user_img","gender","short_description"}, method = RequestMethod.POST)
+    public String editUser(@RequestParam("username")String username,@RequestParam("fullname")String fullname,@RequestParam("user_img")String user_img,
+            @RequestParam("gender")int gender,@RequestParam("short_description")String short_description
+            , HttpSession httpSession) {
+        Object obj = httpSession.getAttribute("userEntity");
+        UserEntity userEntity = (UserEntity)obj;
+        userEntity.setUsername(username);
+        userEntity.setFullname(fullname);
+        userEntity.setUser_img(user_img);
+        userEntity.setGender(gender);
+        userEntity.setShort_description(short_description);
+        userService.save(userEntity);
+        return "redirect:/user/edit/{userId}";
+    }
 }
