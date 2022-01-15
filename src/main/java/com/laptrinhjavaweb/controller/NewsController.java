@@ -80,6 +80,9 @@ public class NewsController {
 		return "home";
 	}
 	
+	
+	//trang liên lạc với chúng tôi 
+	// nếu chưa đăng nhập thì không hiện phần gửi tin nhắn cho admin
 	@RequestMapping(value = "/contact")
 	public String conntactWithUs(Model model, HttpSession httpSession) {
 		Object obj = httpSession.getAttribute("userEntity");
@@ -102,7 +105,7 @@ public class NewsController {
 		}
 	}
 	
-	//chi tiet bai viet
+	//chi tiết bài viết
 	@RequestMapping("/details/{newsId}")
 	public String showDetailsPage(Model model, @PathVariable int newsId) {
 		CommentEntity commentEntity = new CommentEntity();
@@ -117,6 +120,8 @@ public class NewsController {
 		return "single_page";
 	}
 	
+	// phần bình luận trong trang chi tiết bài viết
+	// phải đăng nhập sau đó mới cho bình luận
 	@RequestMapping(value = "/details/{newsId}", params = {"main"}, method = RequestMethod.POST)
 	public String createComment(@PathVariable int newsId, @RequestParam("main")String main, HttpSession httpSession) {
 		NewsEntity newsEntity = newsService.findByIdNews(newsId);
@@ -134,6 +139,7 @@ public class NewsController {
 		return "redirect:/details/{newsId}";
 	}
 	
+	// tạo bài viết mới
 	@RequestMapping(value = "/author", params = {"title","display_image","content","short_description","category"}, method = RequestMethod.POST)
 	public String createNews(@RequestParam("title")String title,@RequestParam("display_image")String display_image,
 			@RequestParam("content")String content,@RequestParam("short_description")String short_description, @RequestParam("category")int category
@@ -156,6 +162,7 @@ public class NewsController {
 		return "redirect:/author";
 	}
 	
+	// sửa bài viết
 	@RequestMapping("/edit/{newsId}")
 	public String showEditNewsPage(@PathVariable int newsId, Model model) {
 		List<CateEntity> cateEntitiesList = categoryService.findAll();
@@ -185,7 +192,7 @@ public class NewsController {
 		return "redirect:/author";
 	}
 	
-	// đã hoạt động
+	// xóa bài viết
 	@RequestMapping("/delete/{id}" )
 	public String delete(@PathVariable int id, RedirectAttributes redirect) {
 		NewsEntity newsEntity = newsService.findByIdNews(id);
@@ -206,10 +213,9 @@ public class NewsController {
         return "search";
     }
 	
-	//test
+	//show danh sách bài viết theo category
 	@RequestMapping("/category/{cateId}")
 	public String showCate(Model model, @PathVariable int cateId) {
-		
 		model.addAttribute("lastestNews", newsService.findLast());
 		model.addAttribute("cateList", categoryService.findAll());
 		model.addAttribute("random", newsService.findNewsRandom());

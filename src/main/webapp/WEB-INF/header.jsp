@@ -82,7 +82,7 @@ UserEntity userEntity = (UserEntity)object;
           <li class="active"><a href="/home"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
           <li>
           		<c:forEach var="c" items="${cateList}">
-          		<a href="/category/${c.cid}">${c.cname}</a>
+          		<a href="/category/${c.cid}" style="color:white;${tag==c.cid?'background-color:#d083cf;':''}">${c.cname}</a>
           		</c:forEach>
           </li>
           <li><a href="/contact">Liên hệ</a></li>
