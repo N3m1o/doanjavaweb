@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/image.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/css/manager.css" rel="stylesheet" />
 <script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 <style>
@@ -55,7 +56,7 @@ img {
 							<div class="form-group">
 								<label>Ảnh đại diện</label> <input value="${user.user_img}"
 									name="user_img" type="text" class="form-control" required>
-								<center><img src="${user.user_img}"></center>
+									<div class="image"><img src="${user.user_img}"></div>
 							</div>
 
 							<div class="form-group">
@@ -91,8 +92,6 @@ img {
 	</div>
 
 
-	<script
-		src="${pageContext.request.contextPath}/resources/js/manager.js"
-		type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/manager.js" type="text/javascript"></script>
 </body>
 </html>

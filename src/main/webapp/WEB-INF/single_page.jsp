@@ -98,14 +98,11 @@ UserEntity userEntity = (UserEntity)object;
 							}
 							%>	
 							
-					<div style="border-style: solid;
-    							padding: 30px;
-    							border-color: #d083cf;
-    							border-radius: 20px;">
+					<div>
 					<c:forEach var="c" items="${comment}">
 						<li style="list-style: none;">
-                  		<div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" style="height:40px; width:40px;border-radius:50px;" src="${c.userId.user_img}"> </a>
-                    		<div class="media-body"> <a href="#" class="catg_title" style="font-size:20px; font-weight:bold;">${c.userId.fullname} </a> </div>
+                  		<div class="media wow fadeInDown"> <a class="media-left"> <img alt="" style="height:40px; width:40px;border-radius:50px;" src="${c.userId.user_img}"> </a>
+                    		<div class="media-body"> <a class="catg_title" style="font-size:20px; font-weight:bold;">${c.userId.fullname} </a> </div>
                   		</div>
                   		<a>${c.commentMain}</a>
                   		<a style="font-size:12px;"><i class="fa fa-clock-o"></i>         ${c.commentDate}</a>
