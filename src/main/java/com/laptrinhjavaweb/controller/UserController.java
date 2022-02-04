@@ -1,5 +1,7 @@
 package com.laptrinhjavaweb.controller;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,42 +50,55 @@ public class UserController {
 		httpSession.removeAttribute("userEntity");
 		return "redirect:/home";
 	}
-/**	
-	// Thuc hien Dang ky
-	@RequestMapping(value = "/signup",params = {"username","password"}, method = RequestMethod.POST)
-	public String signUp(UserEntity userEntity) {
-		if (userEntity.getUsername() != null && userEntity.getPassword() != null) {
-			try {
-				if (userService.findByUserId(userEntity) != null) {
-					return "username da ton tai";
-				}
-				else {
-					userService.findByUserId(userEntity);
-					return "redirect:/login";
-				}
-			} catch (Exception e) {
-				return "error";
-			}
+
+	// Chức năng đăng ký
+	@RequestMapping(value = "/register",params = {"user","pass","repass"}, method = RequestMethod.POST)
+	public String signup(@RequestParam("user")String username,@RequestParam("pass")String password,@RequestParam("repass")String repass, Model model) {
+		UserEntity userEntity = new UserEntity();
+		userEntity.setUsername(username);
+		userEntity.setPassword(password);
+		userEntity.setFullname("Anonymous");
+		userEntity.setGender(0);
+		userEntity.setIsAuthor(0);
+		userEntity.setIsAdmin(0);
+		userEntity.setUser_img("https://pdp.edu.vn/wp-content/uploads/2021/05/hinh-anh-mat-cuoi-dep-cute-cam-xuc.jpg");
+		if (!repass.equals(password)) {
+			model.addAttribute("alert1", "Repeat Password phải trùng với Password");
+			return "register";
+			
 		} else {
-			return "thiếu thông tin";
+			if (userService.findByName(username)!=null) {
+				model.addAttribute("alert2","Tên đăng nhập đã tồn tại");
+				return "register";
+			}
+			else {
+				userService.save(userEntity);
+				return "redirect:/login";
+			}
 		}
 	}
-**/	
 	
-	@RequestMapping("/user/edit/{userId}")
+	@RequestMapping(value = "/register")
+	public String getsignup() {
+		return "register";
+	}
+
+	
+	// Chỉnh sửa thông tin cá nhân
+	@RequestMapping("/user/{userId}")
     public String showEditNewsPage(@PathVariable int userId, Model model, HttpSession httpSession) {
         Object obj = httpSession.getAttribute("userEntity");
         if (obj!=null) {
             model.addAttribute("user", userService.findByUserId(userId));
-            return "account";
+            return "profile";
         } else {
             return "redirect:/home";
         }
 
     }
 
-    @RequestMapping(value = "/user/edit/{userId}", params = {"username","fullname","user_img","gender","short_description"}, method = RequestMethod.POST)
-    public String editUser(@RequestParam("username")String username,@RequestParam("fullname")String fullname,@RequestParam("user_img")String user_img,
+    @RequestMapping(value = "/user/{userId}", params = {"username","fullname","user_img","gender","short_description","date_of_birth"}, method = RequestMethod.POST)
+    public String editUser(@RequestParam("username")String username,@RequestParam("fullname")String fullname,@RequestParam("user_img")String user_img, @RequestParam("date_of_birth")Date date_of_birth,
             @RequestParam("gender")int gender,@RequestParam("short_description")String short_description
             , HttpSession httpSession) {
         Object obj = httpSession.getAttribute("userEntity");
@@ -93,7 +108,8 @@ public class UserController {
         userEntity.setUser_img(user_img);
         userEntity.setGender(gender);
         userEntity.setShort_description(short_description);
+        userEntity.setDateOfBirth(date_of_birth);
         userService.save(userEntity);
-        return "redirect:/user/edit/{userId}";
+        return "redirect:/user/{userId}";
     }
 }

@@ -25,9 +25,6 @@ UserEntity userEntity = (UserEntity)object;
 
 </head>
 <body>
-	<div id="preloader">
-		<div id="status">&nbsp;</div>
-	</div>
 	<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 	<div class="container">
 
@@ -104,8 +101,8 @@ UserEntity userEntity = (UserEntity)object;
                   		<div class="media wow fadeInDown"> <a class="media-left"> <img alt="" style="height:40px; width:40px;border-radius:50px;" src="${c.userId.user_img}"> </a>
                     		<div class="media-body"> <a class="catg_title" style="font-size:20px; font-weight:bold;">${c.userId.fullname} </a> </div>
                   		</div>
-                  		<a>${c.commentMain}</a>
-                  		<a style="font-size:12px;"><i class="fa fa-clock-o"></i>         ${c.commentDate}</a>
+                  		<div style="margin-left:51px;">${c.commentMain}</div>
+                  		<a style="font-size:12px; margin-left:51px;"><i class="fa fa-clock-o"></i>         ${c.commentDate}</a>
                   		<br><hr>
                 		</li>
 					</c:forEach>

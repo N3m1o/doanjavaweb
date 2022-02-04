@@ -40,7 +40,7 @@ UserEntity userEntity = (UserEntity)object;
                                 <%
                                     }
                                 %>
-								<li style="display: block"><a style="width: 100%" href="/user/edit/${userEntity.userID}">Tài Khoản của Tôi</a></li>
+								<li style="display: block"><a style="width: 100%" href="/user/${userEntity.userID}">Tài Khoản của Tôi</a></li>
 								<li style="display: block"><a style="width: 100%" href="/logout">Đăng Xuất</a></li>
 							</ul>
 						</li>
@@ -65,7 +65,7 @@ UserEntity userEntity = (UserEntity)object;
 				</div>
 				<div class="add_banner">
 					<a href="/home"><img
-						src="${pageContext.request.contextPath}/resources/images/addbanner_728x90_V1.jpg"
+						src="${pageContext.request.contextPath}/resources/images/banner.png"
 						alt=""></a>
 				</div>
 			</div>

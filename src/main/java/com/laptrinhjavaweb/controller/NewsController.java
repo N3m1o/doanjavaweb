@@ -7,8 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -108,7 +106,7 @@ public class NewsController {
 	//chi tiết bài viết
 	@RequestMapping("/details/{newsId}")
 	public String showDetailsPage(Model model, @PathVariable int newsId) {
-		CommentEntity commentEntity = new CommentEntity();
+		//CommentEntity commentEntity = new CommentEntity();
 		//model.addAttribute("authorOfComment", userService.findByUserId(commentEntity.getUserId()));
 		model.addAttribute("comment", commentService.findCommentByNewsId(newsId));
 		model.addAttribute("lastestNews", newsService.findLast());
