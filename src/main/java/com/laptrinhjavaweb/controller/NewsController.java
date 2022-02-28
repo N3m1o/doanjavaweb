@@ -50,6 +50,34 @@ public class NewsController {
 		return "PostManager";
 	}
 	
+	// hiển thị bài viết trên trang admin 
+		@RequestMapping(value = "/admin-news")
+		public String findAllAdminNews(Model model) {
+			model.addAttribute("news", newsService.findAll());
+			List<CateEntity> cateEntitiesList = categoryService.findAll();
+			model.addAttribute("cateList", cateEntitiesList);
+			return "AdminNews";
+		}
+		
+		// Duyệt bài viết
+		@RequestMapping("/submit/{newsId}")
+		public String showSubmitNewsPage(@PathVariable int newsId, Model model) {
+			List<CateEntity> cateEntitiesList = categoryService.findAll();
+			model.addAttribute("cateList", cateEntitiesList);
+			model.addAttribute("news", newsService.findByIdNews(newsId));
+			return "edit";
+		}
+		
+		@RequestMapping(value = "/edit/{newsId}", method = RequestMethod.POST)
+		public String submitNews(@PathVariable("newsId")int newsId, HttpSession httpSession) {
+			
+			//CateEntity cateEntity = categoryService.findCateById(category);
+			NewsEntity newsEntity = newsService.findByIdNews(newsId);
+			newsEntity.setStatus(true);
+			newsService.save(newsEntity);
+			return "redirect:/admin-news";
+		}
+	
 	// lấy ra bài viết hiển thị trên trang chủ
 	@RequestMapping(value = "/home")
 	public String findLastestNews(Model model) {
@@ -149,7 +177,7 @@ public class NewsController {
 		newsEntity.setContent(content);
 		newsEntity.setDisplay_img(display_image);
 		newsEntity.setShortDescription(short_description);
-		newsEntity.setStatus(true);
+		newsEntity.setStatus(false);
 		newsEntity.setTitle(title);
 		newsEntity.setUserId(userEntity);
 		newsEntity.setCateId(cateEntity);
@@ -181,7 +209,7 @@ public class NewsController {
 		newsEntity.setContent(content);
 		newsEntity.setDisplay_img(display_image);
 		newsEntity.setShortDescription(short_description);
-		newsEntity.setStatus(true);
+		newsEntity.setStatus(false);
 		newsEntity.setTitle(title);
 		newsEntity.setUserId(userEntity);
 		newsEntity.setCateId(cateEntity);
@@ -220,6 +248,37 @@ public class NewsController {
 		model.addAttribute("cate", newsService.findById(cateId));
 		model.addAttribute("tag", cateId);
 		return "list";
+	}
+	
+	// Trang preview của admin
+	
+	@RequestMapping("/preview/{newsId}")
+	public String preview(@PathVariable int newsId, Model model) {
+		List<CateEntity> cateEntitiesList = categoryService.findAll();
+		model.addAttribute("cateList", cateEntitiesList);
+		model.addAttribute("news", newsService.findByIdNews(newsId));
+		return "preview";
+	}
+	
+	@RequestMapping(value = "/preview/{newsId}", params = {"id","title","display_image","content","short_description","category"}, method = RequestMethod.POST)
+	public String preview(@RequestParam("id")int newsId,@RequestParam("title")String title,@RequestParam("display_image")String display_image,
+			@RequestParam("content")String content,@RequestParam("short_description")String short_description, @RequestParam("category")int category
+			,HttpSession httpSession) {
+		
+		CateEntity cateEntity = categoryService.findCateById(category);
+		Object obj = httpSession.getAttribute("userEntity");
+		UserEntity userEntity = (UserEntity)obj;
+		NewsEntity newsEntity = new NewsEntity();
+		newsEntity.setContent(content);
+		newsEntity.setDisplay_img(display_image);
+		newsEntity.setShortDescription(short_description);
+		newsEntity.setStatus(true);
+		newsEntity.setTitle(title);
+		newsEntity.setUserId(userEntity);
+		newsEntity.setCateId(cateEntity);
+		newsEntity.setNewsId(newsId);
+		newsService.save(newsEntity);
+		return "redirect:/admin-news";
 	}
 
 }

@@ -6,6 +6,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<!-- 
+	TRANG DUYỆT BÀI CỦA ADMIN
+ -->
+
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -37,12 +41,6 @@ img {
 						<h2>
 							QUẢN LÝ <b>BÀI VIẾT</b>
 						</h2>
-					</div>
-					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
-						<i class="material-icons">&#xE147;</i> <span>Thêm bài viết</span></a> 
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
-						<i class="material-icons">&#xE15C;</i> <span>Xóa bài</span></a>
 					</div>
 				</div>
 			</div>
@@ -80,8 +78,8 @@ img {
   								</div>
   							</td>
 							<td>
-								<a href="/edit/${c.newsId}" class="edit" data-toggle="modal"> 
-								<i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></a> 
+								<a href="/preview/${c.newsId}" class="edit" data-toggle="modal"> 
+								<i class="material-icons" data-toggle="tooltip" title="Xem trước">&#xe8f4;</i></a> 
 								<a href="/delete/${c.newsId}" class="delete" data-toggle="modal"> 
 								<i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i></a>
 							</td>
@@ -120,19 +118,19 @@ img {
 					<div class="modal-body">
 						<div class="form-group">
 							<label>Tiêu đề</label> <input name="title" type="text"
-								class="form-control" required>
+								class="form-control" required >
 						</div>
 						<div class="form-group">
 							<label>Ảnh đại diện</label> <input name="display_image" type="text"
-								class="form-control" required>
+								class="form-control" required >
 						</div>
 						<div class="form-group">
 							<label>Mô tả ngắn</label>
-							<textarea name="short_description" class="form-control" required></textarea>
+							<textarea name="short_description" class="form-control" required ></textarea>
 						</div>
 						<div class="form-group">
 							<label>Thể loại</label>
-							<select name="category" class="form-select" aria-label="Default select example" style = "width: 120px; margin-left: 30px;">
+							<select name="category" class="form-select" aria-label="Default select example" style = "width: 120px; margin-left: 30px;" readonly>
 									<c:forEach var="c" items="${cateList}">
 									<option value = "${c.cid}">${c.cname}</option>
 									</c:forEach>
@@ -141,7 +139,7 @@ img {
 						<div class="form-group">
 							<label>Nội dung</label>
 							<textarea name="content" class="form-control" required
-								id="content"></textarea>
+								id="content" ></textarea>
 							<script type="text/javascript">
 								CKEDITOR.replace('content', {
 									//width : "520px",

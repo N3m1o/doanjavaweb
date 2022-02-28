@@ -38,12 +38,18 @@ UserEntity userEntity = (UserEntity)object;
                                 %>
                                 <li style="display: block"><a style="width: 100%"  href="/author">Bài Viết của Tôi</a></li>
                                 <%
+                                    } else if (userEntity.getIsAdmin()==1){
+                                %>
+                                <li style="display: block"><a style="width: 100%"  href="/admin-news">Quản trị bài viết</a></li>
+                                <li style="display: block"><a style="width: 100%"  href="">Quản trị người dùng</a></li>
+                                <%
                                     }
                                 %>
 								<li style="display: block"><a style="width: 100%" href="/user/${userEntity.userID}">Tài Khoản của Tôi</a></li>
 								<li style="display: block"><a style="width: 100%" href="/logout">Đăng Xuất</a></li>
 							</ul>
 						</li>
+						
 						<%
 						} else {
 						%>
