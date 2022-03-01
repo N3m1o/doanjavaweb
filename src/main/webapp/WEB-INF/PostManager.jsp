@@ -53,7 +53,6 @@ img {
 						<th>Tiêu đề</th>
 						<th>Hình đại diện</th>
 						<th>Mô tả ngắn</th>
-						<th>Nội dung</th>
 						<th>Thao tác</th>
 					</tr>
 				</thead>
@@ -73,12 +72,7 @@ img {
 							<td>${c.title}</td>
 							<td><img src="${c.display_img}"></td>
 							<td>${c.shortDescription}</td>
-							<td><div style="overflow: hidden;
-  											display: -webkit-box;
-  											-webkit-line-clamp: 7;
-  											-webkit-box-orient: vertical;">${c.content}
-  								</div>
-  							</td>
+							
 							<td>
 								<a href="/edit/${c.newsId}" class="edit" data-toggle="modal"> 
 								<i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></a> 

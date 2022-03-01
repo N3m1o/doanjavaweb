@@ -89,6 +89,7 @@ img {
 									</c:forEach>
 								
 							</div>
+							<input type="hidden" value="${news.userId}" name="userId" >
 
 						</div>
 						<div class="modal-footer">

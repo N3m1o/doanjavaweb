@@ -227,6 +227,14 @@ public class NewsController {
 		return "redirect:/author";
 	}
 	
+	@RequestMapping("/deleteByAdmin/{id}" )
+	public String deleteByAdmin(@PathVariable int id, RedirectAttributes redirect) {
+		NewsEntity newsEntity = newsService.findByIdNews(id);
+				newsService.delete(newsEntity);
+
+		return "redirect:/admin-news";
+	}
+	
 	@RequestMapping(value="/search",params= {"searchString"})
     public String search(@RequestParam("searchString") String s, Model model) {
         if (s.equals("")) {
@@ -260,23 +268,11 @@ public class NewsController {
 		return "preview";
 	}
 	
-	@RequestMapping(value = "/preview/{newsId}", params = {"id","title","display_image","content","short_description","category"}, method = RequestMethod.POST)
-	public String preview(@RequestParam("id")int newsId,@RequestParam("title")String title,@RequestParam("display_image")String display_image,
-			@RequestParam("content")String content,@RequestParam("short_description")String short_description, @RequestParam("category")int category
-			,HttpSession httpSession) {
+	@RequestMapping(value = "/preview/{newsId}", params = {"id"}, method = RequestMethod.POST)
+	public String preview(@RequestParam("id")int newsId) {
 		
-		CateEntity cateEntity = categoryService.findCateById(category);
-		Object obj = httpSession.getAttribute("userEntity");
-		UserEntity userEntity = (UserEntity)obj;
-		NewsEntity newsEntity = new NewsEntity();
-		newsEntity.setContent(content);
-		newsEntity.setDisplay_img(display_image);
-		newsEntity.setShortDescription(short_description);
+		NewsEntity newsEntity = newsService.findByIdNews(newsId);
 		newsEntity.setStatus(true);
-		newsEntity.setTitle(title);
-		newsEntity.setUserId(userEntity);
-		newsEntity.setCateId(cateEntity);
-		newsEntity.setNewsId(newsId);
 		newsService.save(newsEntity);
 		return "redirect:/admin-news";
 	}

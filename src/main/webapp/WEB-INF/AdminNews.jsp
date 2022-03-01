@@ -51,7 +51,7 @@ img {
 						<th>Tiêu đề</th>
 						<th>Hình đại diện</th>
 						<th>Mô tả ngắn</th>
-						<th>Nội dung</th>
+						
 						<th>Thao tác</th>
 					</tr>
 				</thead>
@@ -71,12 +71,7 @@ img {
 							<td>${c.title}</td>
 							<td><img src="${c.display_img}"></td>
 							<td>${c.shortDescription}</td>
-							<td><div style="overflow: hidden;
-  											display: -webkit-box;
-  											-webkit-line-clamp: 7;
-  											-webkit-box-orient: vertical;">${c.content}
-  								</div>
-  							</td>
+
 							<td>
 								<a href="/preview/${c.newsId}" class="edit" data-toggle="modal"> 
 								<i class="material-icons" data-toggle="tooltip" title="Xem trước">&#xe8f4;</i></a> 
@@ -106,56 +101,7 @@ img {
 	</div>
 	
 	<!-- Add Modal HTML -->
-	<div id="addEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form action="/author" method="post">
-					<div class="modal-header">
-						<h4 class="modal-title">Thêm bài viết</h4>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<label>Tiêu đề</label> <input name="title" type="text"
-								class="form-control" required >
-						</div>
-						<div class="form-group">
-							<label>Ảnh đại diện</label> <input name="display_image" type="text"
-								class="form-control" required >
-						</div>
-						<div class="form-group">
-							<label>Mô tả ngắn</label>
-							<textarea name="short_description" class="form-control" required ></textarea>
-						</div>
-						<div class="form-group">
-							<label>Thể loại</label>
-							<select name="category" class="form-select" aria-label="Default select example" style = "width: 120px; margin-left: 30px;" readonly>
-									<c:forEach var="c" items="${cateList}">
-									<option value = "${c.cid}">${c.cname}</option>
-									</c:forEach>
-							</select>
-						</div>
-						<div class="form-group">
-							<label>Nội dung</label>
-							<textarea name="content" class="form-control" required
-								id="content" ></textarea>
-							<script type="text/javascript">
-								CKEDITOR.replace('content', {
-									//width : "520px",
-									height : "550px"
-								});
-							</script>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy"> 
-						<input type="submit" class="btn btn-success" value="Thêm">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	
 	
 	<!-- Delete Modal HTML--> 
 	<div id="deleteEmployeeModal" class="modal fade">
