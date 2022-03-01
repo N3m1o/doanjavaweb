@@ -2,9 +2,10 @@ package com.laptrinhjavaweb.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,23 +40,107 @@ public class NewsController {
 	private CommentService commentService;
 	
 	// hiển thị bài viết của nhà báo
-	@RequestMapping(value = "/author")
-	public String findAll(Model model, HttpSession httpSession) {
-		Object obj = httpSession.getAttribute("userEntity");
-		UserEntity userEntity = (UserEntity)obj;
-		int userId = userEntity.getUserID();
-		model.addAttribute("news", newsService.findNewsByUserId(userId));
-		List<CateEntity> cateEntitiesList = categoryService.findAll();
-		model.addAttribute("cateList", cateEntitiesList);
-		return "PostManager";
-	}
+		@RequestMapping(value = "/author")
+		public String show(Model model, HttpSession httpSession, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+			//Object obj = httpSession.getAttribute("userEntity");
+			//UserEntity userEntity = (UserEntity)obj;
+			//int userId = userEntity.getUserID();
+			//model.addAttribute("news", newsService.findNewsByUserId(userId));
+			//List<CateEntity> cateEntitiesList = categoryService.findAll();
+			//model.addAttribute("cateList", categoryService.findAll());
+			request.getSession().setAttribute("newsList", null);
+			return "redirect:/author/page/1";			//PostManager
+		}
+	
+			//Phân trang trang xem bài viết của nhà báo
+			@RequestMapping(value = "/author/page/{pageNumber}")
+			public String showNewsAuthorPage(HttpServletRequest request, @PathVariable int pageNumber, Model model, HttpSession httpSession) {
+				PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("newsList");
+				int pagesize = 5;
+				Object obj = httpSession.getAttribute("userEntity");
+				UserEntity userEntity = (UserEntity)obj;
+				int userId = userEntity.getUserID();
+				List<NewsEntity> list = (List<NewsEntity>) newsService.findNewsByUserId(userId);
+				System.out.println(list.size());
+				if (pages == null) {
+					pages = new PagedListHolder<>(list);
+					pages.setPageSize(pagesize);
+				} else {
+					final int goToPage = pageNumber - 1;
+					if (goToPage <= pages.getPageCount() && goToPage >= 0) {
+						pages.setPage(goToPage);
+					}
+				}
+				
+				request.getSession().setAttribute("newsList", pages);
+				int current = pages.getPage() + 1;
+				int begin = Math.max(1, current - list.size());
+				int end = Math.min(begin + 5, pages.getPageCount());
+				int totalPageCount = pages.getPageCount();
+				String baseUrl = "/admin-news/page/";
+				
+				model.addAttribute("beginIndex", begin);
+				model.addAttribute("endIndex", end);
+				model.addAttribute("currentIndex", current);
+				model.addAttribute("totalPageCount", totalPageCount);
+				model.addAttribute("baseUrl", baseUrl);
+				model.addAttribute("news", pages);
+				model.addAttribute("pageSize", pagesize);
+	 			
+				model.addAttribute("newsList", list);
+				List<CateEntity> cateEntitiesList = categoryService.findAll();
+				model.addAttribute("cateList", cateEntitiesList);
+				
+				return "PostManager";
+			}	
+	
+/************************************************************************************************************************
+ * ***********************************************************************************************************************/
 	
 	// hiển thị bài viết trên trang admin 
 		@RequestMapping(value = "/admin-news")
-		public String findAllAdminNews(Model model) {
-			model.addAttribute("news", newsService.findAll());
+		public String index(Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+			request.getSession().setAttribute("newsList", null);
+			
+			return "redirect:/admin-news/page/1";
+		}
+		
+		//Phân trang trang xem bài viết của Admin 
+		@RequestMapping(value = "/admin-news/page/{pageNumber}")
+		public String showNewsPage(HttpServletRequest request, @PathVariable int pageNumber, Model model) {
+			PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("newsList");
+			int pagesize = 5;
+			List<NewsEntity> list = (List<NewsEntity>) newsService.findAll();
+			System.out.println(list.size());
+			if (pages == null) {
+				pages = new PagedListHolder<>(list);
+				pages.setPageSize(pagesize);
+			} else {
+				final int goToPage = pageNumber - 1;
+				if (goToPage <= pages.getPageCount() && goToPage >= 0) {
+					pages.setPage(goToPage);
+				}
+			}
+			
+			request.getSession().setAttribute("newsList", pages);
+			int current = pages.getPage() + 1;
+			int begin = Math.max(1, current - list.size());
+			int end = Math.min(begin + 5, pages.getPageCount());
+			int totalPageCount = pages.getPageCount();
+			String baseUrl = "/admin-news/page/";
+			
+			model.addAttribute("beginIndex", begin);
+			model.addAttribute("endIndex", end);
+			model.addAttribute("currentIndex", current);
+			model.addAttribute("totalPageCount", totalPageCount);
+			model.addAttribute("baseUrl", baseUrl);
+			model.addAttribute("news", pages);
+			model.addAttribute("pageSize", pagesize);
+ 			
+			model.addAttribute("newsList", list);
 			List<CateEntity> cateEntitiesList = categoryService.findAll();
 			model.addAttribute("cateList", cateEntitiesList);
+			
 			return "AdminNews";
 		}
 		
@@ -234,6 +319,8 @@ public class NewsController {
 
 		return "redirect:/admin-news";
 	}
+	
+	//Tìm kiếm theo tên bài viết
 	
 	@RequestMapping(value="/search",params= {"searchString"})
     public String search(@RequestParam("searchString") String s, Model model) {

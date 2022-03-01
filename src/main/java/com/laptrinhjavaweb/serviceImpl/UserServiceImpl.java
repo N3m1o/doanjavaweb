@@ -41,14 +41,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 
-	@Override
 	public UserEntity getUserByUsername(String username) {
 		// TODO Auto-generated method stub
 		return userRepository.findByName(username);
 	}
 
 
-	@Override
 	public UserEntity findByUserId(int userId) {
 		try {
 			return userRepository.findByUserId(userId);
@@ -58,7 +56,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 
-	@Override
 	public void save(UserEntity userEntity) {
 		userRepository.save(userEntity);
 	}

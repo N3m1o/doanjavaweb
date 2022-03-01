@@ -57,7 +57,7 @@ img {
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="c" items="${news}">
+					<c:forEach var="c" items="${news.pageList}">
 						<tr>
 							<td>
 									<c:choose>
@@ -85,16 +85,13 @@ img {
 			</table>
 			<div class="clearfix">
 				<div class="hint-text">
-					Hiển thị <b>5</b> trong số <b>25</b> trường
+					Hiển thị <a>${pageSize}</a> trong số <a>${totalPageCount}</a> trường
 				</div>
 				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Trước</a></li>
-					<li class="page-item active"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Sau</a></li>
+					<li class="${currentIndex == 1 ? 'page-item disabled' : 'page-item'}"><a href="${baseUrl}1" title="Trang đầu tiên">Đầu</a></li>
+					<li class="${currentIndex == 1 ? 'page-item disabled' : 'page-item'}"><a href="${baseUrl}${currentIndex - 1}">Trước</a></li>
+					<li class="${currentIndex == totalPageCount ? 'page-item disabled' : 'page-item'}"><a href="${baseUrl}${currentIndex + 1}">Sau</a></li>
+					<li class="${currentIndex == totalPageCount ? 'page-item disabled' : 'page-item'}"><a href="${baseUrl}${totalPageCount}" title="Trang cuối cùng" class="page-link">Cuối</a></li>
 				</ul>
 			</div>
 		</div>

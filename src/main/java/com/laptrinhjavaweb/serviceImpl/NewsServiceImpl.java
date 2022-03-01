@@ -73,7 +73,6 @@ public class NewsServiceImpl implements NewsService {
 		return newsRepository.save(update);
 	}
 
-	@Override
 	public List<NewsEntity> findNewsByUserId(int userId) {
 		// TODO Auto-generated method stub
 		try {
@@ -83,7 +82,6 @@ public class NewsServiceImpl implements NewsService {
 		}
 	}
 
-	@Override
 	public List<NewsEntity> findNewsRandom() {
 		try {
 			return newsRepository.findNewsRandom();
@@ -92,7 +90,6 @@ public class NewsServiceImpl implements NewsService {
 		}
 	}
 
-	@Override
 	public List<NewsEntity> relatestPost(int cateId) {
 		try {
 			return newsRepository.relatestPost(cateId);
@@ -101,7 +98,6 @@ public class NewsServiceImpl implements NewsService {
 		}
 	}
 
-	@Override
 	public List<NewsEntity> findNewsForRight(Integer cateId) {
 		try {
 			return newsRepository.findNewsForRight(cateId);
@@ -110,7 +106,6 @@ public class NewsServiceImpl implements NewsService {
 		}
 	}
 
-	@Override
 	public List<NewsEntity> findNewsForLeft(Integer cateId) {
 		try {
 			return newsRepository.findNewsForLeft(cateId);

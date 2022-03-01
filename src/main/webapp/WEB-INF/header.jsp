@@ -13,10 +13,9 @@ UserEntity userEntity = (UserEntity)object;
 				<div class="header_top_left">
 					<ul class="top_nav">
 						<li><a href="/home">Home</a></li>
-						<li><a href="#">About</a></li>
 						<li><a href="/contact">Contact</a></li>
 						<li>
-                              <div class="container-1" style="width: 300px; vertical-align: middle; white-space: nowrap; position: relative;">
+                              <div class="container-1" style="width: 300px; vertical-align: middle; white-space: nowrap; position: relative; margin-left: 500px;">
                               <form action="/search">
                               <input style="width: 90%;" name="searchString" value="" id="search" placeholder="Search..." />
                               <button type="submit"><i class="fa fa-search"></i></button>
