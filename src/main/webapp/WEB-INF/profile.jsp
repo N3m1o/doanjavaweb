@@ -89,9 +89,14 @@
                         <div class="card-header">Ảnh đại diện</div>
                         <div class="card-body text-center"> <img class="img-account-profile rounded-circle mb-2"
                                 src="${user.user_img}" alt="">
+<<<<<<< HEAD
                            <!--  <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div> 
                             <button
                                 class="btn btn-primary" type="button">Tải ảnh lên</button> -->
+=======
+                            <!-- <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div> <button
+                                class="btn btn-primary" type="button">Tải ảnh lên</button>-->
+>>>>>>> 248a4d3f1139dad02e247344853e74b28539f26d
                         </div>
                     </div>
                 </div>
@@ -140,19 +145,7 @@
                 </div>
             </div>
         </div>
-       <!--   <script type="text/javascript"></script>-->
-    </div>
-    <!-- <script type="text/javascript">(function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-49755460-1', 'auto', { 'allowLinker': true });
-        ga('require', 'linker');
-        ga('linker:autoLink', ['bootdey.com', 'www.bootdey.com', 'demos.bootdey.com']);
-        ga('send', 'pageview');</script> -->
+       </div>
 </body>
 
 </html>

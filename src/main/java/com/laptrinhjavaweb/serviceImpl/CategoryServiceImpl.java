@@ -31,7 +31,6 @@ public class CategoryServiceImpl implements CategoryService{
 		}
 	}
 
-	@Override
 	public CateEntity findCateByName(String cateName) {
 		// TODO Auto-generated method stub
 		try {
@@ -41,7 +40,6 @@ public class CategoryServiceImpl implements CategoryService{
 		}
 	}
 
-	@Override
 	public CateEntity findCateById(int cateId) {
 		// TODO Auto-generated method stub
 		try {

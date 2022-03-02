@@ -99,7 +99,7 @@ img {
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="c" items="${news}">
+					<c:forEach var="c" items="${news.pageList}">
 						<tr>
 							<td>
 									<c:choose>
@@ -129,6 +129,7 @@ img {
 			</table>
 			<div class="clearfix">
 				<div class="hint-text">
+<<<<<<< HEAD
 					Hiển thị <b><%=pageIdNumber %></b> trong số <b><%=newsNumber %></b> bài
 				</div>
 				<ul class="pagination"> 
@@ -149,6 +150,15 @@ img {
 					
 					<li class="page-item"><a href="/author/<%=filter%>/<%=pageIdLimit%>">Cuối</a></li>
 					
+=======
+					Hiển thị <a>${pageSize}</a> trong số <a>${totalPageCount}</a> trường
+				</div>
+				<ul class="pagination">
+					<li class="${currentIndex == 1 ? 'page-item disabled' : 'page-item'}"><a href="${baseUrl}1" title="Trang đầu tiên">Đầu</a></li>
+					<li class="${currentIndex == 1 ? 'page-item disabled' : 'page-item'}"><a href="${baseUrl}${currentIndex - 1}">Trước</a></li>
+					<li class="${currentIndex == totalPageCount ? 'page-item disabled' : 'page-item'}"><a href="${baseUrl}${currentIndex + 1}">Sau</a></li>
+					<li class="${currentIndex == totalPageCount ? 'page-item disabled' : 'page-item'}"><a href="${baseUrl}${totalPageCount}" title="Trang cuối cùng" class="page-link">Cuối</a></li>
+>>>>>>> 248a4d3f1139dad02e247344853e74b28539f26d
 				</ul>
 			</div>
 		</div>

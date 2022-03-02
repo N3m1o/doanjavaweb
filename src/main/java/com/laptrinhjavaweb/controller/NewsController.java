@@ -10,12 +10,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+<<<<<<< HEAD
 import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.naming.java.javaURLContextFactory;
+=======
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+>>>>>>> 248a4d3f1139dad02e247344853e74b28539f26d
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,6 +57,7 @@ public class NewsController {
 	private CommentService commentService;
 
 	// hiển thị bài viết của nhà báo
+<<<<<<< HEAD
 
 	
 	 @RequestMapping(value = "/author") 
@@ -147,6 +154,131 @@ public class NewsController {
 		return "redirect:/admin-news";
 	}
 
+=======
+		@RequestMapping(value = "/author")
+		public String show(Model model, HttpSession httpSession, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+			//Object obj = httpSession.getAttribute("userEntity");
+			//UserEntity userEntity = (UserEntity)obj;
+			//int userId = userEntity.getUserID();
+			//model.addAttribute("news", newsService.findNewsByUserId(userId));
+			//List<CateEntity> cateEntitiesList = categoryService.findAll();
+			//model.addAttribute("cateList", categoryService.findAll());
+			request.getSession().setAttribute("newsList", null);
+			return "redirect:/author/page/1";			//PostManager
+		}
+	
+			//Phân trang trang xem bài viết của nhà báo
+			@RequestMapping(value = "/author/page/{pageNumber}")
+			public String showNewsAuthorPage(HttpServletRequest request, @PathVariable int pageNumber, Model model, HttpSession httpSession) {
+				PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("newsList");
+				int pagesize = 5;
+				Object obj = httpSession.getAttribute("userEntity");
+				UserEntity userEntity = (UserEntity)obj;
+				int userId = userEntity.getUserID();
+				List<NewsEntity> list = (List<NewsEntity>) newsService.findNewsByUserId(userId);
+				System.out.println(list.size());
+				if (pages == null) {
+					pages = new PagedListHolder<>(list);
+					pages.setPageSize(pagesize);
+				} else {
+					final int goToPage = pageNumber - 1;
+					if (goToPage <= pages.getPageCount() && goToPage >= 0) {
+						pages.setPage(goToPage);
+					}
+				}
+				
+				request.getSession().setAttribute("newsList", pages);
+				int current = pages.getPage() + 1;
+				int begin = Math.max(1, current - list.size());
+				int end = Math.min(begin + 5, pages.getPageCount());
+				int totalPageCount = pages.getPageCount();
+				String baseUrl = "/admin-news/page/";
+				
+				model.addAttribute("beginIndex", begin);
+				model.addAttribute("endIndex", end);
+				model.addAttribute("currentIndex", current);
+				model.addAttribute("totalPageCount", totalPageCount);
+				model.addAttribute("baseUrl", baseUrl);
+				model.addAttribute("news", pages);
+				model.addAttribute("pageSize", pagesize);
+	 			
+				model.addAttribute("newsList", list);
+				List<CateEntity> cateEntitiesList = categoryService.findAll();
+				model.addAttribute("cateList", cateEntitiesList);
+				
+				return "PostManager";
+			}	
+	
+/************************************************************************************************************************
+ * ***********************************************************************************************************************/
+	
+	// hiển thị bài viết trên trang admin 
+		@RequestMapping(value = "/admin-news")
+		public String index(Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+			request.getSession().setAttribute("newsList", null);
+			
+			return "redirect:/admin-news/page/1";
+		}
+		
+		//Phân trang trang xem bài viết của Admin 
+		@RequestMapping(value = "/admin-news/page/{pageNumber}")
+		public String showNewsPage(HttpServletRequest request, @PathVariable int pageNumber, Model model) {
+			PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("newsList");
+			int pagesize = 5;
+			List<NewsEntity> list = (List<NewsEntity>) newsService.findAll();
+			System.out.println(list.size());
+			if (pages == null) {
+				pages = new PagedListHolder<>(list);
+				pages.setPageSize(pagesize);
+			} else {
+				final int goToPage = pageNumber - 1;
+				if (goToPage <= pages.getPageCount() && goToPage >= 0) {
+					pages.setPage(goToPage);
+				}
+			}
+			
+			request.getSession().setAttribute("newsList", pages);
+			int current = pages.getPage() + 1;
+			int begin = Math.max(1, current - list.size());
+			int end = Math.min(begin + 5, pages.getPageCount());
+			int totalPageCount = pages.getPageCount();
+			String baseUrl = "/admin-news/page/";
+			
+			model.addAttribute("beginIndex", begin);
+			model.addAttribute("endIndex", end);
+			model.addAttribute("currentIndex", current);
+			model.addAttribute("totalPageCount", totalPageCount);
+			model.addAttribute("baseUrl", baseUrl);
+			model.addAttribute("news", pages);
+			model.addAttribute("pageSize", pagesize);
+ 			
+			model.addAttribute("newsList", list);
+			List<CateEntity> cateEntitiesList = categoryService.findAll();
+			model.addAttribute("cateList", cateEntitiesList);
+			
+			return "AdminNews";
+		}
+		
+		// Duyệt bài viết
+		@RequestMapping("/submit/{newsId}")
+		public String showSubmitNewsPage(@PathVariable int newsId, Model model) {
+			List<CateEntity> cateEntitiesList = categoryService.findAll();
+			model.addAttribute("cateList", cateEntitiesList);
+			model.addAttribute("news", newsService.findByIdNews(newsId));
+			return "edit";
+		}
+		
+		@RequestMapping(value = "/edit/{newsId}", method = RequestMethod.POST)
+		public String submitNews(@PathVariable("newsId")int newsId, HttpSession httpSession) {
+			
+			//CateEntity cateEntity = categoryService.findCateById(category);
+			NewsEntity newsEntity = newsService.findByIdNews(newsId);
+			newsEntity.setStatus(true);
+			newsService.save(newsEntity);
+			return "redirect:/admin-news";
+		}
+	
+>>>>>>> 248a4d3f1139dad02e247344853e74b28539f26d
 	// lấy ra bài viết hiển thị trên trang chủ
 	@RequestMapping(value = "/home")
 	public String findLastestNews(Model model) {
@@ -307,6 +439,7 @@ public class NewsController {
 
 		return "redirect:/admin-news";
 	}
+<<<<<<< HEAD
 
 	@RequestMapping(value = "/search", params = { "searchString" })
 	public String search(@RequestParam("searchString") String s, Model model) {
@@ -321,6 +454,24 @@ public class NewsController {
 	}
 
 	// show danh sách bài viết theo category
+=======
+	
+	//Tìm kiếm theo tên bài viết
+	
+	@RequestMapping(value="/search",params= {"searchString"})
+    public String search(@RequestParam("searchString") String s, Model model) {
+        if (s.equals("")) {
+            return "redirect:/home";
+        }
+        model.addAttribute("lastestNews", newsService.findLast());
+        model.addAttribute("cateList", categoryService.findAll());
+        model.addAttribute("random", newsService.findNewsRandom());
+        model.addAttribute("news",newsService.search(s));
+        return "search";
+    }
+	
+	//show danh sách bài viết theo category
+>>>>>>> 248a4d3f1139dad02e247344853e74b28539f26d
 	@RequestMapping("/category/{cateId}")
 	public String showCate(Model model, @PathVariable int cateId) {
 		model.addAttribute("lastestNews", newsService.findLast());

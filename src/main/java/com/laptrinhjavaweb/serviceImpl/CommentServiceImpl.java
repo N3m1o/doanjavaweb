@@ -14,17 +14,14 @@ public class CommentServiceImpl implements CommentService{
 	@Autowired
 	private CommentRepository commentRepository;
 	
-	@Override
 	public void save(CommentEntity commentEntity) {
 		commentRepository.save(commentEntity);
 	}
 
-	@Override
 	public void delete(CommentEntity commentEntity) {
 		commentRepository.delete(commentEntity);
 	}
 
-	@Override
 	public List<CommentEntity> findCommentByNewsId(Integer newsId) {
 		try {
 			return commentRepository.findCommentByNewsId(newsId);
