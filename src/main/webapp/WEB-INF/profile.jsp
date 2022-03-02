@@ -89,8 +89,9 @@
                         <div class="card-header">Ảnh đại diện</div>
                         <div class="card-body text-center"> <img class="img-account-profile rounded-circle mb-2"
                                 src="${user.user_img}" alt="">
-                            <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div> <button
-                                class="btn btn-primary" type="button">Tải ảnh lên</button>
+                           <!--  <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div> 
+                            <button
+                                class="btn btn-primary" type="button">Tải ảnh lên</button> -->
                         </div>
                     </div>
                 </div>

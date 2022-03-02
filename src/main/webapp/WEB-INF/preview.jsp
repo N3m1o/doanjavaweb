@@ -93,6 +93,7 @@ img {
 
 						</div>
 						<div class="modal-footer">
+							<a href="/admin-news" type="button" class="btn btn-default" data-dismiss="modal">Hủy</a>
 							<input type="submit" class="btn btn-success" value="Duyệt bài">
 						</div>
 					</form>

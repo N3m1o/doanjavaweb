@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.entity;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,13 +33,13 @@ public class CommentEntity {
 	private NewsEntity newsId;
 	
 	@Column(name = "comment_date")
-	private Date commentDate;
+	private Timestamp commentDate;
 	
 	public CommentEntity() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CommentEntity(int commentId, String commentMain, UserEntity userId, NewsEntity newsId, Date commentDate) {
+	public CommentEntity(int commentId, String commentMain, UserEntity userId, NewsEntity newsId, Timestamp commentDate) {
 		super();
 		this.commentId = commentId;
 		this.commentMain = commentMain;
@@ -79,11 +80,11 @@ public class CommentEntity {
 		this.newsId = newsId;
 	}
 
-	public Date getCommentDate() {
+	public Timestamp getCommentDate() {
 		return commentDate;
 	}
 
-	public void setCommentDate(Date commentDate) {
+	public void setCommentDate(Timestamp commentDate) {
 		this.commentDate = commentDate;
 	}
 

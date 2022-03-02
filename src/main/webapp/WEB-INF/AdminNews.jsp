@@ -42,6 +42,10 @@ img {
 							QUẢN LÝ <b>BÀI VIẾT</b>
 						</h2>
 					</div>
+					<div class="col-sm-6">
+						<a href="/home" class="btn btn-primary">
+						<i class="material-icons">&#xE88A;</i><span>Home</span></a>
+					</div>
 				</div>
 			</div>
 			<table class="table table-striped table-hover">

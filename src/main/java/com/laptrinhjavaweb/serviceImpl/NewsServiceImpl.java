@@ -118,4 +118,51 @@ public class NewsServiceImpl implements NewsService {
 			return null;
 		}
 	}
+
+	@Override
+	public List<NewsEntity> findNewsByUserIdStatusTrue(int userId) {
+		// TODO Auto-generated method stub
+		try {
+			return newsRepository.findNewsByUserIdStatusTrue(userId);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	@Override
+	public List<NewsEntity> findNewsByUserIdStatusFalse(int userId) {
+		// TODO Auto-generated method stub
+		try {
+			return newsRepository.findNewsByUserIdStatusFalse(userId);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public List<NewsEntity> findNewsByUserIdPagination(int userId, int start, int pageNumber) {
+		// TODO Auto-generated method stub
+		try {
+			return newsRepository.findNewsByUserIdPagination(userId,start,pageNumber);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public List<NewsEntity> findNewsByUserIdPaginationStatusTrue(int userId, int start, int pageNumber) {
+		// TODO Auto-generated method stub
+		try {
+			return newsRepository.findNewsByUserIdPaginationStatusTrue(userId,start,pageNumber);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public List<NewsEntity> findNewsByUserIdPaginationStatusFalse(int userId, int start, int pageNumber) {
+		// TODO Auto-generated method stub
+		try {
+			return newsRepository.findNewsByUserIdPaginationStatusFalse(userId,start,pageNumber);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

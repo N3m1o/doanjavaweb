@@ -41,7 +41,7 @@ UserEntity userEntity = (UserEntity)object;
                                     } else if (userEntity.getIsAdmin()==1){
                                 %>
                                 <li style="display: block"><a style="width: 100%"  href="/admin-news">Quản trị bài viết</a></li>
-                                <li style="display: block"><a style="width: 100%"  href="">Quản trị người dùng</a></li>
+                                <li style="display: block"><a style="width: 100%"  href="/admin-users">Quản trị người dùng</a></li>
                                 <%
                                     }
                                 %>

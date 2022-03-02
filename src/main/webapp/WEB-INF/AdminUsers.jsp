@@ -10,7 +10,7 @@
 	int pageIdfollowing = pageId+1;
 	int pageIdLimit = (Integer)request.getAttribute("pageIdLimit");
 	int pageIdNumber = (Integer)request.getAttribute("pageIdNumber");
-	int newsNumber = (Integer)request.getAttribute("newsNumber");
+	int usersNumber = (Integer)request.getAttribute("usersNumber");
 	String filter = (String)request.getAttribute("filter");
 %>
 <!DOCTYPE html>
@@ -42,16 +42,16 @@ img {
 				<div class="row">
 					<div class="col-sm-6">
 						<h2>
-							QUẢN LÝ <b>BÀI VIẾT</b>
+							QUẢN LÝ <b>TÀI KHOẢN</b>
 						</h2>
 					</div>
 					<div class="col-sm-6">
 						<a href="/home" class="btn btn-primary">
 						<i class="material-icons">&#xE88A;</i><span>Home</span></a>
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
-						<i class="material-icons">&#xE147;</i> <span>Thêm bài viết</span></a> 
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
-						<i class="material-icons">&#xE15C;</i> <span>Xóa bài</span></a>
+						<i class="material-icons">&#xE147;</i> <span>Thêm Tài Khoản</span></a> 
+						<!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
+						<i class="material-icons">&#xE15C;</i> <span>Xóa Tài Khoản</span></a> -->
 						
 					</div>
 				</div>
@@ -62,20 +62,20 @@ img {
 						<select style="background-color:white;color:black" onchange="window.location=this.options[this.selectedIndex].value">
 						<c:choose>
 							<c:when test="${combobox==1 }">
-								<option value="/author/all/1"selected>Tất Cả</option>
-								<option value="/author/daduyet/1" >Đã Duyệt</option>
-								<option value="/author/chuaduyet/1" >Chưa Duyệt</option>
+								<option value="/admin-users/all/1"selected>Tất Cả</option>
+								<option value="/admin-users/reader/1" >Người Đọc</option>
+								<option value="/admin-users/author/1" >Nhà Báo</option>
 							</c:when>
 							
 								<c:when test="${combobox==2 }">
-									<option value="/author/all/1">Tất Cả</option>
-									<option value="/author/daduyet/1" selected>Đã Duyệt</option>
-									<option value="/author/chuaduyet/1">Chưa Duyệt</option>
+									<option value="/admin-users/all/1">Tất Cả</option>
+									<option value="/admin-users/reader/1" selected>Người Đọc</option>
+									<option value="/admin-users/author/1" >Nhà Báo</option>
 								</c:when>
 								<c:otherwise>
-									<option value="/author/all/1">Tất Cả</option>
-									<option value="/author/daduyet/1" >Đã Duyệt</option>
-									<option value="/author/chuaduyet/1" selected>Chưa Duyệt</option>
+									<option value="/admin-users/all/1">Tất Cả</option>
+									<option value="/admin-users/reader/1" >Người Đọc</option>
+									<option value="/admin-users/author/1" selected >Nhà Báo</option>
 								</c:otherwise> 
 	
 						</c:choose>
@@ -90,36 +90,39 @@ img {
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th>Status</th>
-						<th>Tiêu đề</th>
+						<th>Vai Trò</th>
+						<th>Tên Đăng Nhập</th>
 						<th>Hình đại diện</th>
-						<th>Ngày Đăng</th>
-						<th>Mô tả ngắn</th>
+						<th>Tên Đầy Đủ</th>
+						<th>Mật Khẩu</th>
 						<th>Thao tác</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="c" items="${news}">
+					<c:forEach var="u" items="${users}">
 						<tr>
 							<td>
 									<c:choose>
-                                    		<c:when test="${c.status==true}">
-                                    			<label>Đã duyệt</label>
+                                    		<c:when test="${u.isAuthor==1}">
+                                    			<label>Nhà Báo</label>
+                                    		</c:when>
+                                    		<c:when test="${u.isAuthor==0 && u.isAdmin==0}">
+                                    			<label>Người Đọc</label>
                                     		</c:when>
                                     		<c:otherwise>
-                                    			<label>Chưa duyệt</label>
+                                    			<label>Admin</label>
                                     		</c:otherwise>
                             		</c:choose>
                             </td>
-							<td>${c.title}</td>
-							<td><img src="${c.display_img}"></td>
-							<td>${c.date_submitted}</td>
-							<td>${c.shortDescription}</td>
+							<td>${u.username}</td>
+							<td><img src="${u.user_img}"></td>
+							<td>${u.fullname}</td>
+							<td>${u.password}</td>
 							
 							<td>
-								<a href="/edit/${c.newsId}" class="edit" data-toggle="modal"> 
+								<a href="/editAdminUsers/${u.userID}" class="edit" data-toggle="modal"> 
 								<i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></a> 
-								<a href="/delete/${c.newsId}" class="delete" data-toggle="modal"> 
+								<a href="/deleteAdminUsers/${u.userID}" class="delete" data-toggle="modal"> 
 								<i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i></a>
 								
 							</td>
@@ -129,25 +132,25 @@ img {
 			</table>
 			<div class="clearfix">
 				<div class="hint-text">
-					Hiển thị <b><%=pageIdNumber %></b> trong số <b><%=newsNumber %></b> bài
+					Hiển thị <b><%=pageIdNumber %></b> trong số <b><%=usersNumber %></b> bài
 				</div>
 				<ul class="pagination"> 
-					<li class="page-item"><a href="/author/<%=filter%>/1">Đầu</a></li>
+					<li class="page-item"><a href="/admin-users/<%=filter%>/1">Đầu</a></li>
 					
 					<% if (pageId==1){ %>
 					<li class="page-item"><a href="#">Trước</a></li>
 					<% } else { %>
-					<li class="page-item"><a href="/author/<%=filter%>/<%=pageIdprevious%>">Trước</a></li>
+					<li class="page-item"><a href="/admin-users/<%=filter%>/<%=pageIdprevious%>">Trước</a></li>
 					<% } 
 					
 					if (pageId==pageIdLimit) {%>
 					<li class="page-item"><a href="#">Sau</a></li>
 					<%} else { %>
-					<li class="page-item"><a href="/author/<%=filter%>/<%=pageIdfollowing%>">Sau</a></li>
+					<li class="page-item"><a href="/admin-users/<%=filter%>/<%=pageIdfollowing%>">Sau</a></li>
 					<%} %>
 					
 					
-					<li class="page-item"><a href="/author/<%=filter%>/<%=pageIdLimit%>">Cuối</a></li>
+					<li class="page-item"><a href="/admin-users/<%=filter%>/<%=pageIdLimit%>">Cuối</a></li>
 					
 				</ul>
 			</div>
@@ -159,44 +162,46 @@ img {
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="/author" method="post">
+				<form action="/admin-users" method="post">
 					<div class="modal-header">
-						<h4 class="modal-title">Thêm bài viết</h4>
+						<h4 class="modal-title">Thêm Nhà Báo</h4>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
 						<div class="form-group">
-							<label>Tiêu đề</label> <input name="title" type="text"
+							<label>Tên Đăng Nhập</label> <input name="username" type="text"
 								class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Ảnh đại diện</label> <input name="display_image" type="text"
+							<label>Mật Khẩu</label> <input name="password" type="text"
 								class="form-control" required>
 						</div>
+						<div class="form-group">
+							<label>Tên Đầy Đủ</label> <input name="fullname" type="text"
+								class="form-control" >
+						</div>
+						<div class="form-group">
+							<label>Ngày Sinh</label>
+							 <input class="form-control" id="inputLocation" type="date" value="" name="dateOfBirth" required>
+						</div>
+						<div class="form-group">
+							<label>Ảnh đại diện</label> <input name="user_img" type="text"
+								class="form-control" >
+						</div>
+						
 						<div class="form-group">
 							<label>Mô tả ngắn</label>
-							<textarea name="short_description" class="form-control" required></textarea>
+							<textarea name="short_description" class="form-control" ></textarea>
 						</div>
 						<div class="form-group">
-							<label>Thể loại</label>
-							<select name="category" class="form-select" aria-label="Default select example" style = "width: 120px; margin-left: 30px;">
-									<c:forEach var="c" items="${cateList}">
-									<option value = "${c.cid}">${c.cname}</option>
-									</c:forEach>
+							<label>Giới Tính</label>
+							<select name="gender" class="form-select" aria-label="Default select example" style = "width: 120px; margin-left: 30px;">
+									<option value = "1">Nam</option>
+									<option value = "0">Nữ</option>
 							</select>
 						</div>
-						<div class="form-group">
-							<label>Nội dung</label>
-							<textarea name="content" class="form-control" required
-								id="content"></textarea>
-							<script type="text/javascript">
-								CKEDITOR.replace('content', {
-									//width : "520px",
-									height : "550px"
-								});
-							</script>
-						</div>
+						
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy"> 

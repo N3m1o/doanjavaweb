@@ -1,5 +1,7 @@
 package com.laptrinhjavaweb.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +63,77 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void save(UserEntity userEntity) {
 		userRepository.save(userEntity);
+	}
+
+	@Override
+	public void delete(UserEntity userEntity) {
+		userRepository.delete(userEntity);
+	}
+
+
+	@Override
+	public List<UserEntity> findAllUsers() {
+		// TODO Auto-generated method stub
+		try {
+			return userRepository.findAllUsers();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public List<UserEntity> findAllUsersAuthors() {
+		// TODO Auto-generated method stub
+		try {
+			return userRepository.findAllUsersAuthors();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public List<UserEntity> findAllUsersReaders() {
+		// TODO Auto-generated method stub
+		try {
+			return userRepository.findAllUsersReaders();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public List<UserEntity> findAllUsersPagination(int start, int pageNumber) {
+		// TODO Auto-generated method stub
+		try {
+			return userRepository.findAllUsersPagination( start, pageNumber);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public List<UserEntity> findAllUsersPaginationAuthors(int start, int pageNumber) {
+		// TODO Auto-generated method stub
+		try {
+			return userRepository.findAllUsersPaginationAuthors( start, pageNumber);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public List<UserEntity> findAllUsersPaginationReaders(int start, int pageNumber) {
+		// TODO Auto-generated method stub
+		try {
+			return userRepository.findAllUsersPaginationReaders( start, pageNumber);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 }

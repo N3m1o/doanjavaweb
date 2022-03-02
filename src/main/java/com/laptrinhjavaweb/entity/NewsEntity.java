@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,7 +47,7 @@ public class NewsEntity implements Serializable{
 	private String display_img;
 	
 	@Column(name = "date_submitted")
-	private Date date_submitted; 
+	private Timestamp date_submitted; 
 	
 	
 	
@@ -141,20 +142,25 @@ public class NewsEntity implements Serializable{
 	}
 
 
-	public Date getDate_submitted() {
+	public Timestamp getDate_submitted() {
 		return date_submitted;
 	}
 
 
 
-	public void setDate_submitted(Date date_submitted) {
-		this.date_submitted = date_submitted;
-	}
+	
 	@Override
 	public String toString() {
 		return "NewsEntity [newsId=" + newsId + ", title=" + title + ", shortDescription=" + shortDescription
 				+ ", content=" + content + ", cateId=" + cateId + ", userId=" + userId + ", status=" + status
 				+ ", display_img=" + display_img + "]";
+	}
+
+
+
+	public void setDate_submitted(Timestamp sqlDate) {
+		// TODO Auto-generated method stub
+		this.date_submitted = sqlDate;
 	}
 
 	

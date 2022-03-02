@@ -1,5 +1,7 @@
 package com.laptrinhjavaweb.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -20,4 +22,23 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 	
 	@Query(value = "select * from users u where u.user_id = ?1", nativeQuery = true)
 	UserEntity findByUserId(Integer userId);
+	
+	@Query(value = "select * from users u where u.is_admin=0 order by u.user_id desc", nativeQuery = true)
+	List<UserEntity> findAllUsers();
+	
+	@Query(value = "select * from users u where u.is_admin=0 and u.is_author=1 order by u.user_id desc", nativeQuery = true)
+	List<UserEntity> findAllUsersAuthors();
+	
+	@Query(value = "select * from users u where u.is_admin=0 and u.is_author=0 order by u.user_id desc", nativeQuery = true)
+	List<UserEntity> findAllUsersReaders();
+	
+	@Query(value = "select * from users u where u.is_admin=0 order by u.user_id desc offset ?1 rows fetch next ?2 rows only", nativeQuery = true)
+	List<UserEntity> findAllUsersPagination(int start, int pageNumber);
+	
+	@Query(value = "select * from users u where u.is_admin=0 and u.is_author=1 order by u.user_id desc offset ?1 rows fetch next ?2 rows only", nativeQuery = true)
+	List<UserEntity> findAllUsersPaginationAuthors(int start, int pageNumber);
+	
+	@Query(value = "select * from users u where u.is_admin=0 and u.is_author=0 order by u.user_id desc offset ?1 rows fetch next ?2 rows only",  nativeQuery = true)
+	List<UserEntity> findAllUsersPaginationReaders(int start, int pageNumber);
+	
 }

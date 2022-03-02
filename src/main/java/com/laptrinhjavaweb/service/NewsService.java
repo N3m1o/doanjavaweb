@@ -30,4 +30,14 @@ public interface NewsService {
 	List<NewsEntity> findNewsRandom();
 	
 	List<NewsEntity> relatestPost(int cateId);
+	
+	List<NewsEntity> findNewsByUserIdStatusTrue(int userId);
+	
+	List<NewsEntity> findNewsByUserIdStatusFalse(int userId);
+	
+	List<NewsEntity> findNewsByUserIdPagination(int userId, int start, int pageNumber);
+
+	List<NewsEntity> findNewsByUserIdPaginationStatusTrue(int userId, int start, int pageNumber);
+
+	List<NewsEntity> findNewsByUserIdPaginationStatusFalse(int userId, int start, int pageNumber);
 }
